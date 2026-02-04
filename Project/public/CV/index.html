@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio </title>
+    <link rel="stylesheet" href="STYLES.CSS">
+
+</head>
+<body>
+    <header>
+        <h1>My Portfolio</h1>
+        <ul>
+        <li><a href="#About">About</a></li>
+        <li><a href="#personal-data">Personal Data</a></li>
+        <li><a href="#Contact">Contact</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#work-experience">Work Experience</a></li>
+        <li><a href="#skill">Skill</a></li>
+        <li><a href="#languages">Languages</a></li>
+    </ul>
+
+    
+    </header>
+    <section id="About">
+        <h2>About</h2>
+        <p>"I am a hardworking and passionate software developer who is keen on learning and solving new challenges. I have a strong interest in web development and game coding, and I practice daily to enhance my skills. My goal is to become a software engineer who brings positive change to the world through technology."
+        </p>
+
+    </section>
+    <section id="personal-data">
+        <h2>Personal Data</h2>
+        <ul>
+                <li>Name: Mureed Sajjad </li>
+                <li>Father's Name: Ijaz Hussain</li>
+                <li>   Date of Birth: 05-05-2002 </li>
+                <li>  Domicile: Bhakkar (Punjab) </li>
+                <li>  CNIC #: 38101-0845925-5 </li>
+                <li>  Marital Status: Unmarried </li>
+                <li>  Religion: Islam </li>
+                <li>  Nationality: Pakistani</li>
+            
+        </ul>
+
+    </section>
+    <section id="Contact">
+        <h2>Contact</h2>
+        <ul>
+            <li>Phone Number
+                <ul>
+                  <ol> 
+                    <li> <a href="tel:+923437543272">03437543272</a></li>
+                    <li> <a href="tel:+923010981886">03010981886 </a></li>
+                  </ol>
+                 </ul>
+            </li>
+        
+        
+              <li>Email: <a href="mailto:mureedsajjadms@gmail.com">mureedsajjadms@gmail.com</a></li>
+             <li>  Current Address: House No 7A, Nawab Town, Thokar Niaz Baig, Lahore</li>
+             <li>   Permanent Address: Yousaf Shah, Bhakkar, Punjab, Pakistan</li>
+        </ul>
+
+    </section>
+    <section id="education">
+        <h2>Education</h2>
+<ol>
+    <li><strong>Matric (Science Group)</strong><ul><li>
+            <li>Marks: 684/1100 (Grade B)</li>
+            <li>Board: BISE Sargodha</li>
+            <li>Year: 2016-2018</li>
+            <li>School: Govt High School Yousaf Shah (Bhakkar)</li>
+            <a href="Document PDF/Matric Results Card.pdf" target="_blank">📄 View Certificate</a>
+        </ul>
+    </li>
+    <li><strong>FA (Humanities)</strong>
+        <ul>
+            <li>Marks: 587/1100 (Grade C)</li>
+            <li>Board: BISE Sargodha</li>
+            <li>Year: 2018-2020</li>
+            <li>College: Govt Associate College Behal (Bhakkar)</li>
+            <a href="Document PDF/Intermediate .pdf" target="_blank">📄 View Certificate</a>
+
+        </ul>
+    </li>
+    <li><strong>BA (Complete)</strong>
+        <ul>
+        <li>University: Allama Iqbal Open University</li>
+        </ul>
+    </li>
+</ol>
+    </section>
+    <section id="work-experience">
+        <h2> Work Experience</h2>
+        <ol>
+        <li> <strong>MS Office</strong> <ul></li>
+            <li> 
+              Company: DM Tech Lahore  </li>
+        </ul>
+        <li><strong>Web development</strong> <ul></li>
+    <ul>
+        <li>Company:Navttc</li>
+    </ul></ol>
+    </section>
+    <section id="skill">
+        <h2>Skill</h2>
+        <ul>
+            <li> Project Management Tools</li>
+            <li>Data Entry </li>
+            <li> Teamwork </li>
+            <li> Typing </li>
+            <li> MS Office (Excel, Word, PowerPoint, etc.) </li>
+            <li> Digital Marketing</li>
+        </ul>
+    </section>
+    <section id="languages">
+        <h2> Languages</h2>
+        <ul>
+             <li>English </li>
+             <li> Urdu</li>
+             <li> Punjabi </li>
+             <li> Saraiki</li>
+        </ul>
+
+    </section>
+    <script>
+        let lastScrollTop = 0;
+        const header = document.querySelector("header");
+    
+        window.addEventListener("scroll", () => {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > lastScrollTop) {
+                // Scroll down
+                header.classList.add("hide");
+            } else {
+                // Scroll up
+                header.classList.remove("hide");
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Avoid negative
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Login/Signup/Admin</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #f0f2f5, #d9e4f5);
+      margin: 0;
+      padding: 30px;
+      text-align: center;
+    }
+  
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 25px;
+      color: #222;
+    }
+  
+    button {
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      margin: 6px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+  
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #43e97b, #38f9d7);
+    }
+  
+    input {
+      padding: 10px;
+      margin: 8px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 400px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+    }
+  
+    input:focus {
+      border-color: #4facfe;
+      box-shadow: 0 0 8px rgba(79, 172, 254, 0.4);
+    }
+  
+    .section {
+      display: none;
+      margin: 40px auto;
+      padding: 30px;
+      width: 95%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.4s ease-in-out;
+    }
+  
+    .visible {
+      display: block;
+    }
+  
+    table {
+      width: 100%;
+      table-layout: auto;
+      margin-top: 60px;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+  
+    table th,
+    table td {
+      padding: 14px;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+      vertical-align: middle;
+    }
+  
+    table th {
+      background-color: #4facfe;
+      color: white;
+    }
+  
+    /* Admin Panel Table Input Styling */
+    table td input {
+      width: auto;
+      min-width: 150px;
+      max-width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  
+    #userTable th:nth-child(3),
+    #userTable td:nth-child(3) {
+      width: 30%;
+    }
+  
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+  
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    @media (max-width: 768px) {
+      input,
+      button {
+        width: 90%;
+        margin: 8px auto;
+        display: block;
+      }
+  
+      table {
+        font-size: 14px;
+      }
+    }
+  
+    .navbar {
+      background-color: #9c00fd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: relative;
+    }
+  
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 14px 16px;
+      display: inline-block;
+    }
+  
+    .navbar {
+      background-color: #f80a0a;
+      border-radius: 5px;
+    }
+  
+    .navbar .left {
+      display: flex;
+      font-weight: bold;
+    }
+  
+    .navbar .right a {
+      font-weight: bold;
+    }
+  
+    .navbar .center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+  
+    .navbar .center:hover {
+      background-color: #575757;
+      cursor: pointer;
+    }
+
+  /* ... (aapka pehla CSS code yahan rehega) ... */
+
+  .blur {
+    filter: blur(4px);
+    pointer-events: none;
+  }
+
+  </style>
+  
+
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="left">
+      <a href="CV/index.html" target="_blank">My Portfolio</a>
+    </div> 
+    <div class="center">Mureed SAjjad M S</div>
+
+    <div class="right">
+      <a href="tel:03437543272">📞 03437543272</a>
+    </div>
+  </div>
+
+  <h1>User System</h1>
+
+  <!-- Nav -->
+  <button onclick="showSection('signup')">Signup</button>
+  <button onclick="showSection('login')">Login</button>
+  <button onclick="showSection('admin')">Admin Panel</button>
+
+  <!-- Signup Section -->
+  <div id="signup" class="section">
+    <h2>Signup</h2>
+    <input type="text" id="signupName" placeholder="Name" /><br/>
+    <input type="email" id="signupEmail" placeholder="Email" /><br/>
+    <input type="password" id="signupPassword" placeholder="Password" /><br/>
+    <button onclick="signup()">Signup</button>
+  </div>
+
+  <!-- Login Section -->
+  <div id="login" class="section">
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email" /><br/>
+    <input type="password" id="loginPassword" placeholder="Password" /><br/>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Admin Panel Section -->
+  <div id="admin" class="section">
+    <h2>Admin Panel</h2>
+    <table id="userTable">
+      <thead>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    function showSection(id) {
+       if( id === 'admin') {
+        const pass = prompt("Enter Admin Passward:");
+       if ( pass !== "sajjad") return alert ("Passward success");
+       }
+      document.querySelectorAll('.section').forEach(div => div.classList.remove('visible'));
+      document.getElementById(id).classList.add('visible');
+      if (id === 'admin') fetchUsers();
+    }
+
+    function signup() {
+      const data = {
+        name: document.getElementById('signupName').value,
+        email: document.getElementById('signupEmail').value,
+        password: document.getElementById('signupPassword').value
+      };
+      fetch('/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.text())
+      .then(alert);
+    }
+
+    function login() {
+
+      const data = {
+        email: document.getElementById('loginEmail').value,
+        password: document.getElementById('loginPassword').value
+      };
+      fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+.then(data => {
+  console.log('Login response:', data); // ADD THIS
+  if (data.success) {
+    alert("Login successful");
+    window.location.href = "cv/index.html";
+    // showSection('admin');
+  } else {
+    alert("Incorrect email or passward");
+
+  }
+});
+
+    }
+
+    function fetchUsers() {
+      fetch('/users')
+      .then(res => res.json())
+      .then(users => {
+        const tbody = document.querySelector('#userTable tbody');
+        tbody.innerHTML = '';
+        users.forEach(user => {
+          const row = `
+            <tr>
+              <td>${user.id}</td>
+              <td><input class="blur" value= "${user.name}" id="name-${user.id}"></td>
+              <td><input class="blur" value= "${user.email}" id="email-${user.id}"></td>
+              <td>
+                <input type="password" placeholder="New Password" id="pass-${user.id}"/>
+                <button onclick="updateUser(${user.id})">Update</button>
+                <button onclick="deleteUser(${user.id})">Delete</button>
+                <button onclick="viewUser(${user.id})">View</button>
+              </td>
+            </tr>`;
+          tbody.innerHTML += row;
+        });
+      });
+    }
+
+    function deleteUser(id) {
+      fetch(`/users/${id}`, { method: 'DELETE' })
+        .then(res => res.text())
+        .then(msg => {
+          alert(msg);
+          fetchUsers();
+        });
+    }
+    function viewUser(id) {
+  document.getElementById(`name-${id}`).classList.remove('blur');
+  document.getElementById(`email-${id}`).classList.remove('blur');
+}
+
+
+    function updateUser(id) {
+      const data = {
+        name: document.getElementById(`name-${id}`).value,
+        email: document.getElementById(`email-${id}`).value,
+        password: document.getElementById(`pass-${id}`).value || ''
+      };
+      fetch(`/users/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.text())
+      .then(msg => {
+        alert(msg);
+        fetchUsers();
+      });
+    }
+  </script>
+</body>
+</html>
