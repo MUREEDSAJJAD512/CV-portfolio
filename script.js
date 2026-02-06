@@ -79,35 +79,54 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// heading ko  top per set karna 
+const titleBar = document.getElementById("mobile-section-title");
+
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 100;
+    if (scrollY >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  titleBar.innerText = current.toUpperCase();
+});
+
+
 
 /* 4. MOBILE MENU TOGGLE */
 
-const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-const mainNav = document.getElementById('mobile-menu-wrapper');
-const mainArea = document.getElementById('main');
+// const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+// const mainNav = document.getElementById('mobile-menu-wrapper');
+// const mainArea = document.getElementById('main');
 
-if (mobileNavToggle) {
-    mobileNavToggle.addEventListener('click', function () {
-        // menu ko toggle karna
-        mainNav.classList.toggle('show-menu');
+// if (mobileNavToggle) {
+//     mobileNavToggle.addEventListener('click', function () {
+//         // menu ko toggle karna
+//         mainNav.classList.toggle('show-menu');
 
-mainArea.classList.toggle('main-pushed');
-        // icon change karna list sy X icon 
-        this.classList.toggle('bi-list');
-        this.classList.toggle('bi-x');
+// mainArea.classList.toggle('main-pushed');
+//         // icon change karna list sy X icon 
+//         this.classList.toggle('bi-list');
+//         this.classList.toggle('bi-x');
 
-    });
-}
+//     });
+// }
 
-// menu ke link per click karty ni menu bund ho jaye 
-const navLinksMobile = document.querySelectorAll('.nav-link');
-navLinksMobile.forEach(link => {
-    link.addEventListener('click', () => {
-        mainNav.classList.remove('show-menu');
-        mobileNavToggle.classList.add('bi-list');
-        mobileNavToggle.classList.remove('bi-x');
-    });
-});
+// // menu ke link per click karty ni menu bund ho jaye 
+// const navLinksMobile = document.querySelectorAll('.nav-link');
+// navLinksMobile.forEach(link => {
+//     link.addEventListener('click', () => {
+//         mainNav.classList.remove('show-menu');
+//         mobileNavToggle.classList.add('bi-list');
+//         mobileNavToggle.classList.remove('bi-x');
+//     });
+// });
 
 /**
  * 5. VIEW CV FUNCTIONALITY
