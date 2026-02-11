@@ -47,86 +47,10 @@ window.addEventListener('load', () => {
         currentColor = parseInt(savedTheme);
         body.classList.add(`theme-${currentColor}`);
     } else {
-        body.classList.add('theme-1'); // Default Blue
+        body.classList.add('theme-1'); // Default White
     }
 });
 
-
-
-
-/**
- * 3. SCROLLSPY (Active Menu Highlight)
- * Scroll karte waqt batata hai ke aap kis section par hain.
- */
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
-
-window.addEventListener('scroll', () => {
-    let current = "";
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').includes(current)) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// heading ko  top per set karna 
-const titleBar = document.getElementById("mobile-section-title");
-
-const sections = document.querySelectorAll("section");
-
-window.addEventListener("scroll", () => {
-  let current = "";
-
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop - 100;
-    if (scrollY >= sectionTop) {
-      current = section.getAttribute("id");
-    }
-  });
-
-  titleBar.innerText = current.toUpperCase();
-});
-
-
-
-/* 4. MOBILE MENU TOGGLE */
-
-// const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-// const mainNav = document.getElementById('mobile-menu-wrapper');
-// const mainArea = document.getElementById('main');
-
-// if (mobileNavToggle) {
-//     mobileNavToggle.addEventListener('click', function () {
-//         // menu ko toggle karna
-//         mainNav.classList.toggle('show-menu');
-
-// mainArea.classList.toggle('main-pushed');
-//         // icon change karna list sy X icon 
-//         this.classList.toggle('bi-list');
-//         this.classList.toggle('bi-x');
-
-//     });
-// }
-
-// // menu ke link per click karty ni menu bund ho jaye 
-// const navLinksMobile = document.querySelectorAll('.nav-link');
-// navLinksMobile.forEach(link => {
-//     link.addEventListener('click', () => {
-//         mainNav.classList.remove('show-menu');
-//         mobileNavToggle.classList.add('bi-list');
-//         mobileNavToggle.classList.remove('bi-x');
-//     });
-// });
 
 /**
  * 5. VIEW CV FUNCTIONALITY
@@ -145,3 +69,79 @@ if (viewCvBtn) {
         }
     });
 }
+
+
+
+// ✅ MOBILE SECTION TITLE (Scroll + Click)
+
+const titleBar = document.getElementById("mobile-section-title");
+
+// ✅ All Section IDs Order
+const sectionIds = [
+  "hero",
+  "about",
+  "resume",
+  "internship",
+  "portfolio",
+  "contact"
+];
+
+// direction tracker
+let direction = 1, // 1 = forward, -1 = backward
+
+// ✅ Scroll Title Update
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sectionIds.forEach((id) => {
+    const section = document.getElementById(id);
+    const rect = section.getBoundingClientRect();
+
+    if (rect.top <= 150 && rect.bottom >= 150) {
+      current = id;
+    }
+  });
+
+  // Only Mobile
+  if (window.innerWidth <= 768) {
+    titleBar.innerText = current.toUpperCase();
+  }
+});
+
+// ✅ Find Current Section Index
+function getCurrentIndex() {
+  let index = 0;
+
+  sectionIds.forEach((id, i) => {
+    const section = document.getElementById(id);
+    const rect = section.getBoundingClientRect();
+
+    if (rect.top <= 150 && rect.bottom >= 150) {
+      index = i;
+    }
+  });
+
+  return index;
+}
+
+// ✅ Click → Next Section Scroll
+titleBar.addEventListener("click", () => {
+  let currentIndex = getCurrentIndex();
+  let nextIndex = currentIndex + direction;
+
+  // Last section → back to reverse
+  if (nextIndex < 0) {
+    direction = 1;
+    nextIndex = currentIndex + direction;
+  }
+
+  // smooth scroll 
+  document.getElementById(sectionIds[nextIndex]).scrollIntoView({
+    behavior: "smooth"
+  });
+
+  
+});
+
+// Default Title
+titleBar.innerText = "Portfolio";
