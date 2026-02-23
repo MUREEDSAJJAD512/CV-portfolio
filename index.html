@@ -3,60 +3,37 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="description" content="Frontend Developer Portfolio of Mureed Sajjad.">
+  <meta name="keywords" content="Frontend Developer, HTML, CSS, JavaScript, React">
+  <meta name="author" content="Mureed Sajjad">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mureed Portfolio</title>
-  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  <!-- Google Fonts (Inter) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
   <!-- ======= Header / Sidebar ======= -->
-  <header id="header" class="fixed-top">
-    <nav id="navbar" class="navbar-menu w-100">
+<header id="header">
+  <div class="logo">
+    <h3>Mureed Sajjad</h3>
+  </div>
 
-      <!-- row number 1 -->
-      <div class="header-top-row d-flex align-items-center justify-content-between px-3 py-2">
+  <ul class="nav-links-row">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 
-        <!-- 1. Profile Image -->
-        <img src="Pic/img.jpg" alt="Mureed Sajjad" class="profile-img-mobile">
+  <div class="menu-toggle">
+    ☰
+  </div>
+</header>
 
-        <!-- 2. Color Button -->
-        <div class="color-picker-wrapper mt-4 px-3">
-          <button id="themSlider" class="btn btn-primary btn-sm">Thems</button>
-        </div>
-        <!-- 4. Mobile Nav Toggle Icon -->
-        <!-- <i class="bi bi-list mobile-nav-toggle "></i> -->
-
-
-      </div>
-      <!-- row number 2 -->
-
-      <!-- 5. Navigation link rpw me hogy -->
-      <div id="mobile-menu-wrapper" class="header-bottom-row">
-        <ul class="nav-links-row">
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bi bi-house-door"></i><span>Home</span></a>
-          </li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bi bi-person"></i><span>About</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bi bi-file-earmark"></i><span>Resume</span></a></li>
-          <li><a href="#internship" class="nav-link scrollto"><i
-                class="bi bi-mortarboard"></i><span>Internship</span></a>
-          </li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bi bi-briefcase"></i><span>Portfolio</span></a>
-          </li>
-          <li><a href="#contact" class="nav-link scrollto"><i class="bi bi-envelope"></i><span>Contact</span></a></li>
-        </ul>
-
-      </div>
-    </nav>
-  </header>
-  
-<div id="mobile-section-sec">HOME</div>
   <!-- ======= Main Content Area ======= -->
   <main id="main">
 
@@ -64,8 +41,11 @@
     <section id="hero" class="hero-section d-flex align-items-center">
       <div class="container text-center">
         <div class="hero-content">
-          <h1>Mureed Sajjad M S</h1>
-          <p>I'm a <span id="typed"></span></p>
+          <h1> Hi, I'm Mureed Sajjad</h1>
+          <h2>Frontend Developer</h2>
+          <p>I build modern, responsive websites and web applications with clean, efficient code.</p>
+          <a href="#contact" class="btn btn-primary">Hire Me</a>
+          <!-- <p>I'm a <span id="typed"></span></p> -->
         </div>
       </div>
     </section>
@@ -244,7 +224,7 @@
           </a>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 portfolio-container">
           <div class="col-lg-4 col-md-6">
             <div class="portfolio-item card">
               <a href="Project/Calculator/index.html" target="_blank">
@@ -285,7 +265,7 @@
       <div class="container">
         <div class="section-title mb-4">
 
-          <h2>Contect</h2>
+          <h2>Contact</h2>
 
         </div>
         <div class="row">

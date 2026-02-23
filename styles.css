@@ -1,0 +1,329 @@
+/* ==========================================================
+   1. GLOBAL VARIABLES
+========================================================== */
+
+:root {
+  --bg-body: #0f172a;
+  --bg-header: #111827;
+  --text-main: #94a3b8;
+  --text-bright: #f1f5f9;
+  --primary-color: #38bdf8;
+  --card-bg: rgba(30, 41, 59, 0.6);
+  --glow-color: rgba(56, 189, 248, 0.15);
+  --border-light: rgba(255,255,255,0.08);
+}
+
+/* ==========================================================
+   2. GLOBAL RESET
+========================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-body);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+  transition: background 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* ==========================================================
+   3. BUTTONS (Professional Look)
+========================================================== */
+
+.btn-primary,
+.btn-outline-primary {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover,
+.btn-outline-primary:hover {
+  background: var(--primary-color);
+  color: #0f172a;
+  box-shadow: 0 0 20px var(--glow-color);
+  transform: translateY(-3px);
+}
+
+.btn-primary i {
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover i {
+  transform: translateX(5px);
+}
+
+/* ==========================================================
+   4. SIDEBAR
+========================================================== */
+
+/* ==========================================================
+   TOP NAVBAR PROFESSIONAL VERSION
+========================================================== */
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  z-index: 1000;
+  transition: 0.3s ease;
+}
+
+/* Logo / Name */
+.logo h3 {
+  color: var(--text-bright);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* Navigation Links */
+.nav-links-row {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links-row li a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+/* Hover underline animation */
+.nav-links-row li a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  background: var(--primary-color);
+  transition: 0.3s ease;
+}
+
+.nav-links-row li a:hover::after,
+.nav-links-row li a.active::after {
+  width: 100%;
+}
+
+.nav-links-row li a:hover,
+.nav-links-row li a.active {
+  color: var(--primary-color);
+}
+
+/* ==========================================================
+   MAIN CONTENT ADJUSTMENT
+========================================================== */
+
+#main {
+  margin-left: 0;
+  padding: 120px 60px 60px 60px;
+}
+
+/* ==========================================================
+   MOBILE NAVIGATION
+========================================================== */
+
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: var(--text-bright);
+  cursor: pointer;
+}
+
+@media (max-width: 992px) {
+
+  #header {
+    padding: 0 20px;
+  }
+
+  .nav-links-row {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: var(--bg-header);
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 20px 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.4s ease;
+  }
+
+  .nav-links-row.show-menu {
+    max-height: 400px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Profile */
+
+.profile-img-mobile {
+  width: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--primary-color);
+  transition: transform 0.3s ease;
+}
+
+.profile-img-mobile:hover {
+  transform: scale(1.05);
+}
+
+.profile-info {
+  text-align: center;
+}
+
+.profile-info h3 a {
+  color: var(--text-bright);
+  text-decoration: none;
+}
+
+/* Navigation */
+
+.nav-link {
+  color: var(--text-main);
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+/* ==========================================================
+   5. MAIN CONTENT
+========================================================== */
+
+#main {
+  margin-left: 280px;
+  padding: 60px 50px;
+}
+
+section {
+  margin-bottom: 100px;
+}
+
+h1, h2 {
+  color: var(--text-bright);
+  font-weight: 700;
+}
+
+.hero-section h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+#typed {
+  color: var(--primary-color);
+}
+
+/* ==========================================================
+   6. PORTFOLIO CARDS
+========================================================== */
+
+.portfolio-item {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid var(--border-light);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(12px);
+}
+
+.portfolio-item:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-color);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* Blur effect */
+
+.portfolio-container:hover .portfolio-item {
+  opacity: 0.4;
+  filter: blur(2px);
+}
+
+.portfolio-container .portfolio-item:hover {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* ==========================================================
+   7. MOUSE GLOW
+========================================================== */
+
+.mouse-glow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(
+    250px circle at var(--x) var(--y),
+    var(--glow-color),
+    transparent 70%
+  );
+  z-index: 9999;
+}
+
+/* ==========================================================
+   8. RESPONSIVE DESIGN
+========================================================== */
+
+@media (max-width: 1199px) {
+
+  #header {
+    width: 100%;
+    height: 80px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #main {
+    margin-left: 0;
+    margin-top: 100px;
+    padding: 20px;
+  }
+
+  .profile-img-mobile {
+    width: 70px;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+}

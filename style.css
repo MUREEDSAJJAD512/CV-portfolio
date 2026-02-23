@@ -18,58 +18,8 @@ body.theme-1 {
   --bg-header: #ffffff;
   --text-main: #000000;
   --text-bright: #000000;
-  --primary-color: #050303;
+  --primary-color: #3cff00;
   --glow-color: rgba(138, 113, 113, 0.072);
-}
-
-/* red */
-body.theme-2 {
-  --bg-body: #7f1d1d;
-  --bg-header: #991b1b;
-  --text-main: #f6f6fb;
-  --text-bright: #98fb03;
-  --primary-color: #74ff03f9;
-  --glow-color: rgba(94, 31, 220, 0.15);
-}
-
-/* purple */
-body.theme-3 {
-  --bg-body: #2e1065;
-  --bg-header: #3b0764;
-  --text-main: white;
-  --text-bright: #ffffff;
-  --primary-color: #c084fc;
-  --glow-color: rgba(85, 208, 28, 0.15);
-}
-
-/* Green */
-body.theme-4 {
-  --bg-body: Green;
-  --bg-header: Green Blue;
-  --text-main: #00fc58;
-  --text-bright: #fffbfb;
-  --primary-color: #030202;
-  --glow-color: rgba(245, 158, 11, 0.15);
-}
-
-/* Blue*/
-body.theme-5 {
-  --bg-body: #020617;
-  --bg-header: #020617;
-  --text-main: #e0f2fe;
-  --text-bright: #ffffff;
-  --primary-color: #38bdf8;
-  --glow-color: rgba(143, 24, 255, 0.186);
-}
-
-/* Golgen */
-body.theme-6 {
-  --bg-body: gold;
-  --bg-header: #bf9b24;
-  --text-main: rgb(0, 0, 0);
-  --text-bright: #fa0101;
-  --primary-color: #068cf9;
-  --glow-color: rgba(8, 4, 2, 0.242);
 }
 
 /* Black */
@@ -81,6 +31,57 @@ body.theme-7 {
   --primary-color: #ffffff;
   --glow-color: rgba(0, 255, 204, 0.15);
 }
+
+/* purple */
+body.theme-3 {
+  --bg-body: #2e1065;
+  --bg-header: #3b0764;
+  --text-main: white;
+  --text-bright: #ffffff;
+  --primary-color: #0c0707;
+  --glow-color: rgba(6, 12, 13, 0.15);
+}
+
+/* red */
+/* body.theme-2 {
+  --bg-body: #7f1d1d;
+  --bg-header: #991b1b;
+  --text-main: #f6f6fb;
+  --text-bright: #98fb03;
+  --primary-color: #1c03fff9;
+  --glow-color: rgba(94, 31, 220, 0.15);
+} */
+
+/* Green */
+/* body.theme-4 {
+  --bg-body: Green;
+  --bg-header: #006400;
+  --text-main: #00fc58;
+  --text-bright: #fffbfb;
+  --primary-color: #030202;
+  --glow-color: rgba(245, 158, 11, 0.15);
+} */
+
+/* Blue*/
+/* body.theme-5 {
+  --bg-body: #001881;
+  --bg-header: #020617;
+  --text-main: #e0f2fe;
+  --text-bright: #ffffff;
+  --primary-color: #38bdf8;
+  --glow-color: rgba(143, 24, 255, 0.186);
+} */
+
+/* Golgen */
+/* body.theme-6 {
+  --bg-body: gold;
+  --bg-header: #bf9b24;
+  --text-main: rgb(0, 0, 0);
+  --text-bright: #fa0101;
+  --primary-color: #068cf9;
+  --glow-color: rgba(8, 4, 2, 0.242);
+} */
+
 
 
 .btn-primary,
@@ -218,7 +219,7 @@ body {
   order: 2; 
 }   */
 
-#themmSlider {
+#themSlider {
   background: var(--primary-color);
   color: #000;
   border: none;
@@ -230,7 +231,6 @@ body {
 
 /* Navigation Menu */
 .header-bottom-row {
-
   list-style: none;
   padding: 0;
 }
@@ -248,6 +248,12 @@ body {
   transition: 0.3s;
 }
 
+.nav-links-row {
+  list-style: none;
+  flex-wrap: nowrap;
+  overflow: auto;
+}
+
 .nav-link i {
   font-size: 20px;
   margin-right: 10px;
@@ -256,7 +262,6 @@ body {
 .nav-link:hover,
 .nav-link.active {
   color: var(--primary-color);
-
 }
 
 #mobile-section-sec {
@@ -297,7 +302,8 @@ h2 {
 }
 
 .typed-cursor {
-  color: var(--bg-header);
+  /* color: var(--bg-header); */
+  color: var(--primary-color);
 }
 
 /* ==========================================================
@@ -323,6 +329,7 @@ h2 {
   transform: translateY(-10px);
   border-color: var(--primary-color);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
 }
 
 /* ==========================================================
@@ -421,7 +428,6 @@ h2 {
     padding: 10px;
     margin: 0;
     list-style: none;
-    /* gap: 15px; */
   }
 
   .nav-links-row li a {
@@ -476,23 +482,4 @@ h2 {
   .hero-section h1 {
     font-size: 2.5rem;
   }
-
-  /* heading ko top per set karny k leyey */
-  #mobile-section-sec {
-    display: block;
-    position: fixed;
-    top: 88px;
-    left: 0;
-    width: 100%;
-    background: var(--bg-header);
-    color: var(--primary-color);
-    text-align: left;
-    padding: 6px;
-    font-weight: bold;
-    z-index: 2000;
-    border-bottom: 1px solid var(--text-main);
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  }
-
 }

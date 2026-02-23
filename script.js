@@ -29,7 +29,7 @@ if (themeBtn) {
     body.classList.remove(`theme-${currentColor}`);
 
     // Agla rang select karna
-    currentColor = currentColor >= 7 ? 1 : currentColor + 1;
+    currentColor = currentColor >= 3 ? 1 : currentColor + 1;
 
     // Nayi class add karna
     body.classList.add(`theme-${currentColor}`);
@@ -78,27 +78,11 @@ new Typed("#typed", {
   loop: true
 });
 
-// ✅ MOBILE SECTION TITLE (Scroll + Click)
 
-const indicator = document.getElementById("mobile-section-sec");
 
-window.addEventListener("scroll", () => {
+const toggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".nav-links-row");
 
-  let currentSection = "HOME";
-
-  sections.forEach((section) => {
-
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-
-    if (window.scrollY >= sectionTop - sectionHeight / 3) {
-      currentSection = section.getAttribute("id");
-    }
-  });
-
-  if (currentSection === "hero") currentSection = "HOME";
-  else currentSection = currentSection.toUpperCase();
-
-  // Show on Mobile Heading Bar
-  mobileHeading.innerText = currentSection;
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("show-menu");
 });
