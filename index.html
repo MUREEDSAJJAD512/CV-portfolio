@@ -11,28 +11,31 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
   <!-- ======= Header / Sidebar ======= -->
-<header id="header">
-  <div class="logo">
-    <h3>Mureed Sajjad</h3>
-  </div>
+  <header id="header" role="banner">
 
-  <ul class="nav-links-row">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-
-  <div class="menu-toggle">
-    ☰
-  </div>
-</header>
+    <div class="logo">
+      <h>Mureed Sajjad</h1>
+    </div>
+    <nav role="navigation">
+      <ul class="nav-links-row">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#internship">Internship</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <!-- ======= Main Content Area ======= -->
   <main id="main">
@@ -40,7 +43,7 @@
     <!-- ======= Home Section ======= -->
     <section id="hero" class="hero-section d-flex align-items-center">
       <div class="container text-center">
-        <div class="hero-content">
+        <div class="home-content">
           <h1> Hi, I'm Mureed Sajjad</h1>
           <h2>Frontend Developer</h2>
           <p>I build modern, responsive websites and web applications with clean, efficient code.</p>
@@ -228,7 +231,8 @@
           <div class="col-lg-4 col-md-6">
             <div class="portfolio-item card">
               <a href="Project/Calculator/index.html" target="_blank">
-                <img src="Pic/calculator.png" class="card-img-top" alt="Calculator">
+                <img src="Pic/calculator.png" class="card-img-top" alt="Calculator project build with Javascript"
+                  loading="lazy" width="400" height="300">
                 <div class="card-body text-center">
                   <h5>Calculator</h5>
                 </div>
@@ -238,7 +242,8 @@
           <div class="col-lg-4 col-md-6">
             <div class="portfolio-item card">
               <a href="Project/Page club/index.html" target="_blank">
-                <img src="Pic/keyboard typing.png" class="card-img-top" alt="Typing Club">
+                <img src="Pic/keyboard typing.png" class="card-img-top" alt="Typing Club project build with Javascript"
+                  loading="lazy" width="400" height="300">
                 <div class="card-body text-center">
                   <h5>Typing Club</h5>
                 </div>
@@ -248,7 +253,8 @@
           <div class="col-lg-4 col-md-6">
             <div class="portfolio-item card">
               <a href="Login and Singup/index1.html" target="_blank">
-                <img src="Pic/login page.png" class="card-img-top" alt="Login Page">
+                <img src="Pic/login page.png" class="card-img-top" alt="Login Page project build with Javascript"
+                  loading="lazy" width="400" height="300">
                 <div class="card-body text-center">
                   <h5>Login & Signup</h5>
                 </div>
@@ -284,16 +290,22 @@
               <input type="hidden" name="access_key" value="YOUR-KEY-HERE">
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                  <label for="name" class="form-label">Your Name</label>
+                  <input id="name" type="text" name="name" class="form-control" placeholder="Your Name" required
+                    autocomplete="name">
                 </div>
                 <div class="col-md-6 mb-3">
-                  <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                  <label for="email" class="form-label">Email</label>
+                  <input id="email" type="email" name="email" class="form-control" placeholder="Your Email" required
+                  autocomplete="email">
                 </div>
               </div>
               <div class="mb-3">
-                <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                <label for="subject" class="form-label">Subject</label>
+                <input id="tex" name="subject" class="form-control" placeholder="Subject" required>
               </div>
               <div class="mb-3">
+                <label for="message">Please Enter The Message</label>
                 <textarea name="message" rows="5" class="form-control" placeholder="Message" required></textarea>
               </div>
               <button type="submit" class="btn btn-primary w-100">Send Message</button>
@@ -321,7 +333,7 @@
   <!-- JS Files -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>
