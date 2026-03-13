@@ -141,7 +141,7 @@ body {
 }
 
 /* Header Container */
-.container {
+.header-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
@@ -160,7 +160,7 @@ body {
   text-transform: uppercase;
 }
 
-.name-logo:hover h1 {
+.logo:hover h1 {
   color: var(--primary-color);
   text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 
@@ -180,6 +180,8 @@ body {
   align-items: center;
   gap: 5px;
 }
+
+.nav-links-row li {}
 
 .nav-link {
   text-decoration: none;
@@ -229,14 +231,8 @@ body {
   transition: 0.3s;
 }
 
-.header-social-links a:hover {
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-  background-color: rgba(0, 242, 255, 0.05);
-}
-.social-btn {
-
-}
+.header-social-links a:
+.social-btn {}
 
 .social-btn:hover {}
 

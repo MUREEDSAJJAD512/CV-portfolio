@@ -1,3 +1,13 @@
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('.nav-links-row');
+
+menuToggle.addEventListener('click' , () => {
+  navLinks.classList.toggle('open');
+})
+
+
+
+
 // ============================================================
 // 1. INITIALIZE AOS (Animate On Scroll)
 // ============================================================
@@ -567,3 +577,29 @@ if (contactFormElement) {
 console.log('%c🎉 Welcome to Mureed Sajjad Portfolio! 🎉', 'font-size: 20px; color: #38bdf8; font-weight: bold;');
 console.log('%cLooking for talented developers? Get in touch!', 'font-size: 14px; color: #e2e8f0;');
 
+
+// ============================================================
+// 25. RESPONSIVE NAVBAR WITH MOBILE MENU
+// ============================================================
+function initResponsiveNavbar() {
+  const navbar = document.querySelector('.navbar');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (menuToggle) {
+    menuToggle.addEventListener('click', function() {
+      this.classList.toggle('active');
+      navbar.classList.toggle('active');
+    });
+  }
+
+  // Close mobile menu when a link is clicked
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navbar.classList.remove('active');
+    });
+  });
+}
+
+initResponsiveNavbar();

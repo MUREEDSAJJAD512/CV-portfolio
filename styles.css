@@ -10,7 +10,7 @@
   --primary-color: #38bdf8;
   --card-bg: rgba(30, 41, 59, 0.6);
   --glow-color: rgba(56, 189, 248, 0.15);
-  --border-light: rgba(255,255,255,0.08);
+  --border-light: rgba(255, 255, 255, 0.08);
 }
 
 /* ==========================================================
@@ -75,42 +75,23 @@ body {
 ========================================================== */
 
 #header {
+  width: 100%;
+  padding: 20px 0;
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background: rgba(17, 24, 39, 0.8);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 60px;
   z-index: 1000;
-  transition: 0.3s ease;
 }
 
 /* Logo / Name */
-.logo h3 {
-  color: var(--text-bright);
-  font-weight: 700;
-  font-size: 1.3rem;
-}
+.logo h3 {}
 
 /* Navigation Links */
 .nav-links-row {
-  list-style: none;
-  display: flex;
-  gap: 30px;
+
 }
 
 .nav-links-row li a {
-  color: var(--text-main);
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s ease;
-  position: relative;
+ 
 }
 
 /* Hover underline animation */
@@ -237,7 +218,8 @@ section {
   margin-bottom: 100px;
 }
 
-h1, h2 {
+h1,
+h2 {
   color: var(--text-bright);
   font-weight: 700;
 }
@@ -266,7 +248,7 @@ h1, h2 {
 .portfolio-item:hover {
   transform: translateY(-10px);
   border-color: var(--primary-color);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Blur effect */
@@ -290,11 +272,9 @@ h1, h2 {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background: radial-gradient(
-    250px circle at var(--x) var(--y),
-    var(--glow-color),
-    transparent 70%
-  );
+  background: radial-gradient(250px circle at var(--x) var(--y),
+      var(--glow-color),
+      transparent 70%);
   z-index: 9999;
 }
 
