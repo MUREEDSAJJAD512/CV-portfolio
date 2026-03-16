@@ -1,13 +1,14 @@
 /* ==========================================================
-   1. GLOBAL VARIABLES & THEMES
+   1. GLOBAL VARIABLES & THEMES (7 Colors)
    ========================================================== */
 :root {
   --bg-body: #0f172a;
-  --bg-header: rgba(15, 23, 42, 0.8);
+  --bg-header: #0f172a;
   --text-main: #94a3b8;
-  --text-bright: #ffffff;
+  --text-bright: #e2e8f0;
   --primary-color: #38bdf8;
-  /* --card-bg: rgba(30, 41, 59, 0.5); */
+  --card-bg: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
   --glow-color: rgba(56, 189, 248, 0.15);
 }
 
@@ -18,22 +19,23 @@ body.dark-mode {
   --text-main: #b0b8c8;
   --text-bright: #ffffff;
   --primary-color: #60a5fa;
-  /* --card-bg: rgba(20, 30, 60, 0.6); */
+  --card-bg: rgba(20, 30, 60, 0.6);
   --glow-color: rgba(96, 165, 250, 0.2);
 }
 
 /* Light Mode Theme */
 body.light-mode {
-  --bg-body: #f8f9fa;
-  --bg-header: rgba(255, 255, 255, 0.8);
+  --bg-body: #ffffff;
+  --bg-header: #f8f9fa;
   --text-main: #333333;
   --text-bright: #000000;
   --primary-color: #0066cc;
-  /* --card-bg: rgba(220, 230, 245, 0.4); */
-  --glow-color: rgba(0, 102, 204, 0.261);
+  --card-bg: rgba(220, 230, 245, 0.4);
+  --glow-color: rgba(0, 102, 204, 0.1);
 }
 
-Light Mode Specific Styles body.light-mode .portfolio-item,
+/* Light Mode Specific Styles */
+body.light-mode .portfolio-item,
 body.light-mode .skill-card,
 body.light-mode .info-box,
 body.light-mode .contact-form,
@@ -127,186 +129,130 @@ body {
   z-index: 9999;
 }
 
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Poppins, sans-serif;
-}
-
 /* ==========================================================
    2. HEADER / NAVIGATION - MODERN DESIGN
    ========================================================== */
-.logo a {
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--text-bright);
+#header {
+  width: 100%;
+  height:100vh;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Header Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Logo Section */
+.name-logo h1 {
   text-decoration: none;
+  font-size: 24px;
+  font-weight: 800px;
+  color: var(--text-bright);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-.logo span {
-  color: #00f2ff;
-  /* Dot ka color Cyan rakhne ke liye */
+.name-logo:hover h1 {
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px 0;
-  z-index: 1000;
-  transition: all 0.4s ease;
+/* Navigation Menu  */
+.navbar-nav {
   background: var(--bg-header);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: visible !important;
-}
-
-/* Jab page scroll ho to header ka rang thora dark ho jaye */
-.header.scrolled {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 0;
-  /* backdrop-filter: blur(20px); */
-}
-
-.header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(10deg, transparent, rgb(245, 1, 1), transparent, rgba(53, 1, 242, 0.1), transparent, rgba(72, 255, 0, 0.973), transparent);
-  transition: left 0.8s ease-in-out;
-  pointer-events: none;
-}
-
-.header:hover::before {
-  left: 100%;
-}
-
-.header.fixed-top {
+  padding: 8px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
 }
 
-.nav-container {
-  max-width: 1300px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-
-.navbar-menu ul {
+.nav-links-row {
   display: flex;
   list-style: none;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
+  align-items: center;
+  gap: 5px;
 }
 
 .nav-link {
-  color: var(--text-main);
   text-decoration: none;
-  font-size: 15px;
+  color: var(--text-bright);
+  padding: 8px 20px;
+  font-size: 14px;
   font-weight: 500;
-  padding: 8px 18px;
   border-radius: 50px;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+
 }
 
-/* Hover aur Active state ka style */
 .nav-link:hover,
 .nav-link.active {
-  color: #000;
-  background: #00f2ff;
-  box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
+  color: var(--primary-color);
 }
 
-nav ul {
-  display: flex;
-  list-style-type: none;
-  align-items: center;
-  gap: 20px;
+.nav-link.active {
+  background-color: var(--primary-color);
+  color: rgb(0, 0, 0);
+  box-sizing: var(--glow-color);
 }
 
-nav li {
-  display: inline;
-}
-
-.nav-actions {
+/* Header Right Section */
+.header-right {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.social-icons {
+/* Header Social Links */
+.header-social-links {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
-.social-icons a,
-#darkToggle,
-#menuBtn {
-  color: var(--primary-color);
-  font-size: 18px;
+.header-social-links a {
+  color: var(--text-main);
   width: 40px;
   height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  background: rgba(148, 163, 184, 0.217);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  cursor: pointer;
+  text-decoration: none;
   transition: 0.3s;
-  text-decoration: none;
 }
 
-.social-icons a:hover,
-#darkToggle:hover {
-  background: #03f6f6;
-  color: #000;
-  transform: translateY(-3px);
+.header-social-links a:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background-color: rgba(0, 242, 255, 0.05);
+}
+.social-btn {
 
 }
 
-/* Mobile menu button desktop par chupa rahega */
-#menuBtn {
-  display: none;
-}
+.social-btn:hover {}
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+/* Dark Mode Toggle Button */
+.dark-mode-btn {}
 
-.nav-links a {
-  color: #fff;
-  font-size: 20px;
-  text-decoration: none;
-  padding: 10px 15px;
-  transition: 0.4s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 5px solid transparent;
-}
+.dark-mode-btn:hover {}
 
+.dark-mode-btn:active {}
 
 /* ==========================================================
    3. MAIN CONTENT AREA
    ========================================================== */
 #main {
-  margin-left: 0 !important;
+  margin-left: 0;
   margin-top: 80px;
   padding: 0;
   transition: all 0.4s ease;
@@ -678,81 +624,6 @@ h2::after {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
 }
-
-
-@media (max-width: 991px) {
-  .header {
-    width: 100% !important;
-    left: 0 !important;
-    padding:10px  10px 0;
-    /* text-align: center; */
-    
-  }
-
-  #menuBtn {
-    display: flex !important;
-    width: 40px !important;
-    height: 40px;
-  }
-
-  .nav-container {
-    padding: 0 15px;
-  }
-
-  .navbar-menu {
-    position: fixed;
-    top: -110vh;
-    left: 40% !important;
-    right: 5% !important;
-    width: 50% !important;
-    height: auto;
-    /* background: var(--bg-body); */
-    backdrop-filter: blur(30px);
-    padding: 40px 0;
-    border-radius: 20px;
-    border: 2px solid var(--primary-color);
-    transition: top 0.6s ease,
-     filter 0.5s ease,
-      opacity 0.5s ease;
-    z-index: 999;
-    border-bottom: 2px solid var(--primary-color);
-    margin-left: 0 !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  }
-
-  .navbar-menu.active {
-    top: 60px;
-  }
-
-  .navbar-menu.blur {
-    filter: blur(6px);
-    opacity: 0.5;
-  }
-.navbar-menu:hover{
-  filter: blur(0);
-  opacity: 1;
-}
-
-
-  .navbar-menu ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .hero-profile {
-    order: -1;
-  }
-
-  .profile-wrapper {
-    width: 250px;
-    height: 250px;
-  }
-
-
-}
-
-
 
 /* ==========================================================
    5. MOBILE RESPONSIVE
@@ -1583,7 +1454,7 @@ a.nav-link:hover:after,
 /* Responsive Improvements */
 @media (max-width: 768px) {
   #header {
-    /* width: 280px; */
+    width: 280px;
     overflow-y: auto;
   }
 
@@ -1684,14 +1555,6 @@ a.nav-link:hover:after,
     padding: 15px 10px;
     margin-left: 0;
     flex-direction: column;
-  }
-
-  .hero-title {
-    font-size: 2.2rem !important;
-  }
-
-  .hero-buttons {
-    justify-content: center;
   }
 
   #main {

@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- AOS Library for Scroll Animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="canonical" href="https://mureedsajjad512.github.io/My-Portfolio/">
@@ -36,60 +36,45 @@
 
 <body>
 
-  <!-- ======= Header / Navbar ======= -->
-  <header id="header" role="banner">
-    <div class="container">
+  <!-- header header full animation navbar -->
+  <header id="header" class="header fixed-top">
+    <div class="nav-container">
 
-      <div class="name-logo">
-        <h1>MUREED SAJJAD<span>.</span></h1>
+      <div class="logo">
+        <a href="#" class="logo">Mureeed</a>
       </div>
 
-      <!-- Navigation Menu -->
-      <nav class="navbar-nav" role="navigation">
-
-        <ul class="nav-links-row">
-
-          <li><a href="#home" class="nav-link active">Home</a></li>
+      <nav class="navbar-menu" id="navbar">
+        <ul>
+          <li><a href="#home" class="nav-link">Home</a></li>
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#service" class="nav-link">Services</a></li>
           <li><a href="#certification" class="nav-link">Certifications</a></li>
           <li><a href="#project" class="nav-link">Projects</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
-
         </ul>
       </nav>
-      <!-- social-links  -->
-      <div class="header-links">
-        <div class="social-links">
-          <a href="https://github.com/MUREEDSAJJAD512" target="_blank" rel="noopener noreferrer" class="social-btn"
-            title="GitHub">
-            <i class="bi bi-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/mureed-sajjad-512/" target="_blank" rel="noopener noreferrer"
-            class="social-btn" title="LinkedIn">
-            <i class="bi bi-linkedin"></i>
-          </a>
-          <a href="## Chat Customization Diagnostics.md" target="_blank" rel="noopener noreferrer" class="social-btn"
-            title="whatsapp">
-            <i class="bi bi-whatsapp"></i>
-          </a>
 
-
-          <!-- Dark/Light Mode Toggle Button -->
-          <button id="darkModeToggle" class="dark-mode-btn" title="Toggle Dark/Light Mode">
-            <i class="bi bi-moon"></i>
-          </button>
+      <div class="nav-actions">
+        <div class="social-icons">
+          <a href="#"><i class="bi bi-github"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+          <a href="#"><i class="bi bi-twitter"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
         </div>
 
+        <button id="darkToggle" title="Toggle Theme">
+          <i class="bi bi-moon"></i>
+        </button>
 
-        <!-- mobile menu toggle btn  -->
-        <button class="menu-toggle" id="menuToggle" aria-expanded="false">
+        <button id="menuBtn" class="mobile-nav-toggle">
           <i class="bi bi-list"></i>
         </button>
 
-
       </div>
+
     </div>
+
   </header>
 
   <!-- ======= Main Content Area ======= -->
@@ -102,7 +87,6 @@
         <div class="hero-content" data-aos="fade-right" data-aos-duration="800">
           <div class="hero-label">
             <span class="hero-dot"></span>
-            <span class="hero-badge">HOME</span>
           </div>
 
           <h1 class="hero-title">
@@ -132,7 +116,7 @@
         <div class="hero-profile" data-aos="fade-left" data-aos-duration="800">
           <div class="profile-wrapper">
             <div class="profile-glow"></div>
-            <img src="Pic/Mureed Sajjad About.jpg" alt="Mureed Sajjad" class="profile-image">
+            <img src="Pic/logo img.jpeg" alt="Mureed Sajjad" class="profile-image">
 
             <!-- Floating Tech Icons -->
             <div class="floating-icons">
@@ -153,13 +137,6 @@
         </div>
       </div>
 
-      <!-- Scroll Indicator -->
-      <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="600">
-        <span>SCROLL</span>
-        <div class="scroll-arrow">
-          <i class="bi bi-chevron-down"></i>
-        </div>
-      </div>
     </section>
 
 
@@ -171,7 +148,8 @@
           <h2>About</h2>
 
           <p class="mt-3">
-            I am a hardworking and talented individual with experience in data entry and a deep interest in App and Web
+            I am a hardworking and talented individual with experience in data entry and a deep interest in App and
+            Web
             development.
             My goal is to bring positive change through technology and create useful solutions.
           </p>
@@ -269,7 +247,7 @@
     </section>
 
     <!-- ======= Projects Section ======= -->
-    <section id="project" class="project py-5 bg-light">
+    <section id="project" class="project py-5 ">
       <div class="container">
         <div class="section-title d-flex justify-content-between align-items-center mb-4">
           <div>
@@ -330,15 +308,17 @@
 
         <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
           <!-- Contact Info Cards -->
+
           <div class="col-lg-4 col-md-6">
             <div class="contact-card text-center h-100">
               <div class="contact-icon">
-                <i class="bi bi-geo-alt"></i>
+                <i class="bi bi-telephone"></i>
               </div>
-              <h4>Location</h4>
-              <p><a href="https://maps.app.goo.gl/p4PA584BYa8cYL2F8" target="_blank">Lahore, Pakistan</a></p>
+              <h4>Phone</h4>
+              <p><a href="tel:+923437543272">+92 3437543272</a></p>
             </div>
           </div>
+
 
           <div class="col-lg-4 col-md-6">
             <div class="contact-card text-center h-100">
@@ -353,10 +333,10 @@
           <div class="col-lg-4 col-md-6">
             <div class="contact-card text-center h-100">
               <div class="contact-icon">
-                <i class="bi bi-telephone"></i>
+                <i class="bi bi-geo-alt"></i>
               </div>
-              <h4>Phone</h4>
-              <p><a href="tel:+923437543272">+92 3437543272</a></p>
+              <h4>Location</h4>
+              <p><a href="https://maps.app.goo.gl/p4PA584BYa8cYL2F8" target="_blank">Lahore, Pakistan</a></p>
             </div>
           </div>
         </div>

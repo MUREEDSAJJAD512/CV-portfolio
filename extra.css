@@ -82,18 +82,6 @@ body {
   z-index: 1000;
 }
 
-/* Logo / Name */
-.logo h3 {}
-
-/* Navigation Links */
-.nav-links-row {
-
-}
-
-.nav-links-row li a {
- 
-}
-
 /* Hover underline animation */
 .nav-links-row li a::after {
   content: "";
