@@ -1,25 +1,52 @@
+//===========================================
 // 1. Scroll Effect: Scroll karne par header ka background change karna
-window.addEventListener("scroll", () => {
-  const header = document.querySelector(".header");
-  if (window.scrollY > 50) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
+//===========================================
+const headerEl = document.querySelector(".header");
 
+if (headerEl) {
+  const SCROLL_THRESHOLD = 50;
+
+  const handleScroll = () => {
+    headerEl.classList.toggle("scrolled", window.scrollY > SCROLL_THRESHOLD);
+  };
+
+  let ticking = false;
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+}
+
+//===========================================
 // 2. Mobile Menu Toggle: Button click karne par menu dikhana
+//===========================================
+
 const menuBtn = document.getElementById("menuBtn");
 const navbar = document.getElementById("navbar");
-const icon = menuBtn.querySelector("i");
-const navlink = document.querySelectorAll(".nav-link");
-menuBtn.addEventListener("click", function () {
-  navbar.classList.toggle("active");
-  icon.classList.toggle("bi-list");
-  icon.classList.toggle("bi-x");
-});
 
-// Mobile screen par page click se menu close
+if (menuBtn && navbar) {
+  const icon = menuBtn.querySelector("i");
+
+  menuBtn.addEventListener("click", () => {
+    const isActive = navbar.classList.toggle("active");
+
+    icon?.classList.toggle("bi-list", !isActive);
+    icon?.classList.toggle("bi-x", isActive);
+
+    // Accessibility
+    menuBtn.setAttribute("aria-expanded", isActive);
+  });
+}
+
+//===========================================
+// 3. Mobile screen par page click se menu close
+//===========================================
 document.addEventListener("click", function (e) {
   if (window.innerWidth <= 991) {
     if (!navbar.contains(e.target) && !menuBtn.contains(e.target)) {
@@ -31,23 +58,36 @@ document.addEventListener("click", function (e) {
   }
 });
 
-// Dark/Light Mode Toggle
-// const darkToggle = document.getElementById('darkToggle');
-// const body = document.body;
+//===========================================
+// 4. Dark/Light Mode Toggle
+//===========================================
+const darkToggle = document.getElementById("darkToggle");
+const body = document.body;
 
-// darkToggle.addEventListener('click', () => {
-//     body.classList.toggle('light-mode');
+darkToggle.addEventListener("click", () => {
+  body.classList.toggle("light-mode");
 
-//     const icon = darkToggle.querySelector('i');
-//     if(body.classList.contains('light-mode')) {
-//         icon.classList.replace('bi-moon', 'bi-sun');
-//     } else {
-//         icon.classList.replace('bi-sun', 'bi-moon');
-//     }
-// });
+  const icon = darkToggle.querySelector("i");
+  if (body.classList.contains("light-mode")) {
+    icon.classList.replace("bi-moon", "bi-sun");
+    localStorage.setItem("theme", "light");
+  } else {
+    icon.classList.replace("bi-sun", "bi-moon");
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+// load saved theme on page load
+window.addEventListener("load", () => {
+  const saved = localStorage.getItem("theme");
+
+  if (saved === "light") {
+    body.classList.add("light-mode");
+  }
+});
 
 // ============================================================
-// 1. INITIALIZE AOS (Animate On Scroll)
+// 5. INITIALIZE AOS (Animate On Scroll)
 // ============================================================
 document.addEventListener("DOMContentLoaded", function () {
   AOS.init({
@@ -59,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ============================================================
-// 2. MOUSE SPOTLIGHT GLOW EFFECT
+// 6. MOUSE SPOTLIGHT GLOW EFFECT
 // Har waqt mouse ki position track karke background gradient update karta hai.
 // ============================================================
 document.addEventListener("mousemove", (e) => {
@@ -73,20 +113,7 @@ glowDiv.classList.add("mouse-glow");
 document.body.appendChild(glowDiv);
 
 // ============================================================
-// Page load hote hi purana rang wapas lana
-// ============================================================
-window.addEventListener("load", () => {
-  const savedTheme = localStorage.getItem("selectedTheme");
-  if (savedTheme) {
-    currentColor = parseInt(savedTheme);
-    body.classList.add(`theme-${currentColor}`);
-  } else {
-    body.classList.add("theme-1"); // Default White
-  }
-});
-
-// ============================================================
-// 5. SMOOTH SCROLL SPY - Highlight Active Section
+// 8. SMOOTH SCROLL SPY - Highlight Active Section
 // ============================================================
 function updateActiveNav() {
   const sections = document.querySelectorAll("section");
@@ -116,7 +143,7 @@ function updateActiveNav() {
 updateActiveNav();
 
 // ============================================================
-// 6. BACK TO TOP BUTTON
+// 9. BACK TO TOP BUTTON
 // ============================================================
 const backToTopBtn = document.querySelector(".back-to-top");
 
@@ -139,7 +166,7 @@ if (backToTopBtn) {
 }
 
 // ============================================================
-// 7. FORM VALIDATION & SUBMISSION
+// 10. FORM VALIDATION & SUBMISSION
 // Modern form handling with validation
 // ============================================================
 const contactForm = document.querySelector(".contact-form");
@@ -149,7 +176,7 @@ if (contactForm) {
     // Get form inputs
     const name = document.getElementById("name");
     const email = document.getElementById("email");
-    const subject = document.getElementById("tex");
+    const subject = document.getElementById("subject");
     const message = document.querySelector('textarea[name="message"]');
 
     let isValid = true;
@@ -193,6 +220,9 @@ if (contactForm) {
   });
 }
 
+//=====================================================
+// 11. Error messages show karne aur clear karne ke functions
+//=====================================================
 function showError(input, message) {
   const formGroup = input.parentElement;
   input.classList.add("is-invalid");
@@ -217,7 +247,7 @@ function clearError(input) {
 }
 
 // ============================================================
-// 9. TYPED.JS ANIMATION
+// 12. TYPED.JS ANIMATION
 // ============================================================
 if (document.getElementById("typed")) {
   new Typed("#typed", {
@@ -227,7 +257,7 @@ if (document.getElementById("typed")) {
       "Tech Enthusiast",
       "Creative Developer",
     ],
-    typedSpeed: 30,
+    typespeed: 30,
     backSpeed: 25,
     backDelay: 1500,
     loop: true,
@@ -235,7 +265,7 @@ if (document.getElementById("typed")) {
 }
 
 // ============================================================
-// 10. RESPONSIVE HEADER BEHAVIOR
+// 13. RESPONSIVE HEADER BEHAVIOR
 // ============================================================
 let lastScrollTop = 0;
 const header = document.querySelector("#header");
@@ -248,7 +278,7 @@ window.addEventListener("scroll", function () {
 });
 
 // ============================================================
-// 11. LOADING ANIMATION & PAGE TRANSITION
+// 14. LOADING ANIMATION & PAGE TRANSITION
 // صفحہ لوڈ ہوتے وقت خوبصورت animation
 // ============================================================
 window.addEventListener("load", () => {
@@ -266,7 +296,7 @@ setTimeout(() => {
 }, 100);
 
 // ============================================================
-// 12. SKILL PROGRESS BARS (ANIMATED)
+// 15. SKILL PROGRESS BARS (ANIMATED)
 // جب scroll ہو تو numbers animate ہوں
 // ============================================================
 function animateSkillBars() {
@@ -292,7 +322,7 @@ function animateSkillBars() {
 animateSkillBars();
 
 // ============================================================
-// 13. PARALLAX SCROLL EFFECT
+// 16. PARALLAX SCROLL EFFECT
 // Mouse movement par images move ہوں
 // ============================================================
 function initParallax() {
@@ -315,7 +345,7 @@ function initParallax() {
 initParallax();
 
 // ============================================================
-// 14. SMOOTH SCROLL WITH OFFSET
+// 17. SMOOTH SCROLL WITH OFFSET
 // Navigation links smooth scroll with header offset
 // ============================================================
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -339,7 +369,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 });
 
 // ============================================================
-// 15. REAL-TIME CLOCK / LOCATION DISPLAY
+// 18. REAL-TIME CLOCK / LOCATION DISPLAY
 // صفحہ میں timestamp اور location دکھائیں
 // ============================================================
 function updateTimeLocation() {
@@ -370,10 +400,10 @@ function updateTimeLocation() {
 }
 
 // Call if needed
-// updateTimeLocation();
+updateTimeLocation();
 
 // ============================================================
-// 16. INTERSECTION OBSERVER FOR COUNTERS
+// 19. INTERSECTION OBSERVER FOR COUNTERS
 // Stats animation جب scroll ہو
 // ============================================================
 function createCounterAnimation() {
@@ -412,7 +442,7 @@ function createCounterAnimation() {
 createCounterAnimation();
 
 // ============================================================
-// 18. LAZY LOADING IMAGES
+// 20. LAZY LOADING IMAGES
 // Performance optimization
 // ============================================================
 const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -430,98 +460,33 @@ document.querySelectorAll("img[data-src]").forEach((img) => {
   imageObserver.observe(img);
 });
 
-// ============================================================
-// 19. HAMBURGER MENU ANIMATION
-// Mobile menu icon animation
-// ============================================================
-function enhanceMenuAnimation() {
-  const menuToggle = document.querySelector(".menu-toggle");
-
-  if (menuToggle) {
-    menuToggle.addEventListener("click", function () {
-      this.classList.toggle("active");
-    });
-  }
-}
-
-enhanceMenuAnimation();
+// enhanceMenuAnimation();
 
 // ============================================================
-// 20. SOCIAL LINKS ANIMATION
+// 21. SOCIAL LINKS ANIMATION
 // Social icons hover effect
 // ============================================================
-function initSocialLinks() {
-  const socialLinks = document.querySelectorAll(
-    'a[href*="github"], a[href*="linkedin"], a[href*="twitter"], a[href*="facebook"]',
-  );
+// function initSocialLinks() {
+//   const socialLinks = document.querySelectorAll(
+//     'a[href*="github"], a[href*="linkedin"], a[href*="twitter"], a[href*="facebook"]',
+//   );
 
-  socialLinks.forEach((link) => {
-    link.addEventListener("mouseenter", () => {
-      link.style.transform = "scale(1.2) rotate(15deg)";
-      link.style.transition = "all 0.3s ease";
-    });
+//   socialLinks.forEach((link) => {
+//     link.addEventListener("mouseenter", () => {
+//       link.style.transform = "scale(1.2) rotate(10deg)";
+//       link.style.transition = "all 0.3s ease";
+//     });
 
-    link.addEventListener("mouseleave", () => {
-      link.style.transform = "scale(1) rotate(0deg)";
-    });
-  });
-}
+//     link.addEventListener("mouseleave", () => {
+//       link.style.transform = "scale(1) rotate(-10deg)";
+//     });
+//   });
+// }
 
 initSocialLinks();
 
 // ============================================================
-// 21. DARK MODE / LIGHT MODE TOGGLE
-// Dark/Light theme functionality with localStorage
-// ============================================================
-function initDarkModeToggle() {
-  const darkModeBtn = document.getElementById("darkModeToggle");
-  const body = document.body;
-
-  if (darkModeBtn) {
-    // Check saved preference or system preference
-    const savedMode = localStorage.getItem("themeMode");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-
-    // Set initial theme
-    if (savedMode === "light") {
-      body.classList.add("light-mode");
-      body.classList.remove("dark-mode");
-      darkModeBtn.innerHTML = '<i class="bi bi-sun"></i>';
-    } else if (savedMode === "dark" || (!savedMode && prefersDark)) {
-      body.classList.add("dark-mode");
-      body.classList.remove("light-mode");
-      darkModeBtn.innerHTML = '<i class="bi bi-moon"></i>';
-    } else {
-      body.classList.add("dark-mode");
-      darkModeBtn.innerHTML = '<i class="bi bi-moon"></i>';
-    }
-
-    // Toggle theme on button click
-    darkModeBtn.addEventListener("click", () => {
-      if (body.classList.contains("dark-mode")) {
-        // Switch to light mode
-        body.classList.remove("dark-mode");
-        body.classList.add("light-mode");
-        darkModeBtn.innerHTML = '<i class="bi bi-sun"></i>';
-        localStorage.setItem("themeMode", "light");
-      } else {
-        // Switch to dark mode
-        body.classList.remove("light-mode");
-        body.classList.add("dark-mode");
-        darkModeBtn.innerHTML = '<i class="bi bi-moon"></i>';
-        localStorage.setItem("themeMode", "dark");
-      }
-    });
-  }
-}
-
-// Initialize dark mode on page load
-window.addEventListener("load", initDarkModeToggle);
-
-// ============================================================
-// 23. ENHANCED FORM SUCCESS MESSAGE
+// 22. ENHANCED FORM SUCCESS MESSAGE
 // Form submission success notification
 // ============================================================
 const contactFormElement = document.querySelector(".contact-form");
@@ -540,13 +505,13 @@ if (contactFormElement) {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
       // Optional: Clear form
-      // contactFormElement.reset();
+      contactFormElement.reset();
     }, 3000);
   });
 }
 
 // ============================================================
-// 24. CONSOLE MESSAGE (EASTER EGG)
+// 23. CONSOLE MESSAGE (EASTER EGG)
 // ============================================================
 console.log(
   "%c🎉 Welcome to Mureed Sajjad Portfolio! 🎉",
@@ -556,27 +521,3 @@ console.log(
   "%cLooking for talented developers? Get in touch!",
   "font-size: 14px; color: #e2e8f0;",
 );
-
-// ============================================================
-// 25. RESPONSIVE NAVBAR WITH MOBILE MENU
-// ============================================================
-function initResponsiveNavbar() {
-  const navbar = document.querySelector(".navbar");
-  const menuToggle = document.querySelector(".menu-toggle");
-  const navLinks = document.querySelectorAll(".nav-link");
-
-  if (menuToggle) {
-    menuToggle.addEventListener("click", function () {
-      this.classList.toggle("active");
-      navbar.classList.toggle("active");
-    });
-  }
-
-  // Close mobile menu when a link is clicked
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      menuToggle.classList.remove("active");
-      navbar.classList.remove("active");
-    });
-  });
-}

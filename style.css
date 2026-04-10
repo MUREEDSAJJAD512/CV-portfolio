@@ -7,7 +7,7 @@
   --text-main: #94a3b8;
   --text-bright: #ffffff;
   --primary-color: #38bdf8;
-  /* --card-bg: rgba(30, 41, 59, 0.5); */
+  --header-text: rgba(244, 160, 25, 0.95);
   --glow-color: rgba(56, 189, 248, 0.15);
 }
 
@@ -15,9 +15,9 @@
 body.dark-mode {
   --bg-body: #0a0e27;
   --bg-header: #0a0e27;
-  --text-main: #b0b8c8;
+  --text-main: #ffffff;
   --text-bright: #ffffff;
-  --primary-color: #60a5fa;
+  --primary-color: #0066cc;
   /* --card-bg: rgba(20, 30, 60, 0.6); */
   --glow-color: rgba(96, 165, 250, 0.2);
 }
@@ -145,6 +145,7 @@ body {
   text-decoration: none;
   letter-spacing: 1px;
   text-transform: uppercase;
+
 }
 
 .logo span {
@@ -168,7 +169,7 @@ body {
 
 /* Jab page scroll ho to header ka rang thora dark ho jaye */
 .header.scrolled {
-  background: rgba(0, 0, 0, 0.8);
+  background: var();
   padding: 10px 0;
   /* backdrop-filter: blur(20px); */
 }
@@ -191,7 +192,7 @@ body {
 
 .header.fixed-top {
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--primary-color);
   transition: all 0.3s ease;
 }
 
@@ -213,7 +214,7 @@ body {
 }
 
 .nav-link {
-  color: var(--text-main);
+  /* color: var(--text-main); */
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
@@ -364,23 +365,6 @@ h2::after {
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-}
-
-/* Hero Label */
-.hero-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 30px;
-  animation: slideInDown 0.6s ease-out;
-}
-
-.hero-dot {
-  width: 10px;
-  height: 10px;
-  background: var(--primary-color);
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
 }
 
 .hero-badge {
@@ -684,9 +668,9 @@ h2::after {
   .header {
     width: 100% !important;
     left: 0 !important;
-    padding:10px  10px 0;
+    padding: 10px 10px 0;
     /* text-align: center; */
-    
+
   }
 
   #menuBtn {
@@ -712,7 +696,7 @@ h2::after {
     border-radius: 20px;
     border: 2px solid var(--primary-color);
     transition: top 0.6s ease,
-     filter 0.5s ease,
+      filter 0.5s ease,
       opacity 0.5s ease;
     z-index: 999;
     border-bottom: 2px solid var(--primary-color);
@@ -728,10 +712,11 @@ h2::after {
     filter: blur(6px);
     opacity: 0.5;
   }
-.navbar-menu:hover{
-  filter: blur(0);
-  opacity: 1;
-}
+
+  .navbar-menu:hover {
+    filter: blur(0);
+    opacity: 1;
+  }
 
 
   .navbar-menu ul {
@@ -891,6 +876,12 @@ h2::after {
   margin-bottom: 15px;
 }
 
+.skill-card p {
+  color: var(--text-main);
+  /* font-size: 0.95rem; */
+  /* line-height: 1.5; */
+}
+
 /* Enhanced Portfolio Cards */
 .portfolio-item {
   background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.08) 100%);
@@ -987,7 +978,7 @@ h2::after {
   right: 30px;
   width: 50px;
   height: 50px;
-  background: var(--primary-color);
+  background: var(--text-main);
   color: var(--bg-body);
   border-radius: 50%;
   font-size: 24px;
@@ -1110,7 +1101,7 @@ html {
 
 /* Active Navigation Link */
 .nav-link.active {
-  color: var(--primary-color) !important;
+  color: var(--text-bright) !important;
   font-weight: 700;
   border-bottom: 3px solid var(--primary-color);
 }
@@ -1245,7 +1236,7 @@ img.loaded {
 }
 
 /* Social Links Enhancement */
-a[href*="github"],
+/* a[href*="github"], */
 a[href*="linkedin"],
 a[href*="twitter"],
 a[href*="facebook"] {
@@ -1258,17 +1249,27 @@ a[href*="facebook"] {
   background: rgba(56, 189, 248, 0.1);
   border: 2px solid var(--primary-color);
   color: var(--primary-color);
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   margin: 0 8px;
+  overflow: hidden;
+  gap: 8px;
+  padding: 0 12px;
+
 }
 
-a[href*="github"]:hover,
+/* a[href*="github"]:hover, */
 a[href*="linkedin"]:hover,
 a[href*="twitter"]:hover,
 a[href*="facebook"]:hover {
+  width: 170px;
   background: var(--primary-color);
   color: var(--bg-body);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 20px rgba(10, 20, 24, 0.5);
+  transform: scale(1.1);
+}
+
+a [href*="github"]:hover span {
+  opacity: 1;
 }
 
 /* Scroll Animation Optimization */
