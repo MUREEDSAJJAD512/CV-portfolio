@@ -1,5 +1,9 @@
+// ============================================================
+// 1. HEADER SECTION FUNCTIONS
+// ============================================================
+
 //===========================================
-// 1. Scroll Effect: Scroll karne par header ka background change karna
+// 1.1 Scroll Effect: Scroll karne par header ka background change karna
 //===========================================
 const headerEl = document.querySelector(".header");
 
@@ -24,9 +28,8 @@ if (headerEl) {
 }
 
 //===========================================
-// 2. Mobile Menu Toggle: Button click karne par menu dikhana
+// 1.2 Mobile Menu Toggle: Button click karne par menu dikhana
 //===========================================
-
 const menuBtn = document.getElementById("menuBtn");
 const navbar = document.getElementById("navbar");
 
@@ -45,7 +48,7 @@ if (menuBtn && navbar) {
 }
 
 //===========================================
-// 3. Mobile screen par page click se menu close
+// 1.3 Mobile screen par page click se menu close
 //===========================================
 document.addEventListener("click", function (e) {
   if (window.innerWidth <= 991) {
@@ -58,8 +61,12 @@ document.addEventListener("click", function (e) {
   }
 });
 
+// ============================================================
+// 2. HERO SECTION FUNCTIONS
+// ============================================================
+
 //===========================================
-// 4. Dark/Light Mode Toggle
+// 2.1 Dark/Light Mode Toggle
 //===========================================
 const darkToggle = document.getElementById("darkToggle");
 const body = document.body;
@@ -77,98 +84,118 @@ darkToggle.addEventListener("click", () => {
   }
 });
 
-// load saved theme on page load
-window.addEventListener("load", () => {
-  const saved = localStorage.getItem("theme");
-
-  if (saved === "light") {
-    body.classList.add("light-mode");
-  }
-});
-
-// ============================================================
-// 5. INITIALIZE AOS (Animate On Scroll)
-// ============================================================
-document.addEventListener("DOMContentLoaded", function () {
-  AOS.init({
-    duration: 1000,
-    easing: "ease-in-out",
-    once: false,
-    offset: 100,
-  });
-});
-
-// ============================================================
-// 6. MOUSE SPOTLIGHT GLOW EFFECT
-// Har waqt mouse ki position track karke background gradient update karta hai.
-// ============================================================
-document.addEventListener("mousemove", (e) => {
-  document.body.style.setProperty("--x", e.clientX + "px");
-  document.body.style.setProperty("--y", e.clientY + "px");
-});
-
-// Glow effect ka div body mein add karna
-const glowDiv = document.createElement("div");
-glowDiv.classList.add("mouse-glow");
-document.body.appendChild(glowDiv);
-
-// ============================================================
-// 8. SMOOTH SCROLL SPY - Highlight Active Section
-// ============================================================
-function updateActiveNav() {
-  const sections = document.querySelectorAll("section");
-  const navLinks = document.querySelectorAll(".nav-link");
-
-  window.addEventListener("scroll", () => {
-    let currentSection = "";
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-
-      if (scrollY >= sectionTop - 200) {
-        currentSection = section.getAttribute("id");
-      }
-    });
-
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === "#" + currentSection) {
-        link.classList.add("active");
-      }
-    });
-  });
-}
-
-updateActiveNav();
-
-// ============================================================
-// 9. BACK TO TOP BUTTON
-// ============================================================
-const backToTopBtn = document.querySelector(".back-to-top");
-
-if (backToTopBtn) {
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 500) {
-      backToTopBtn.classList.add("active");
-    } else {
-      backToTopBtn.classList.remove("active");
-    }
-  });
-
-  backToTopBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+//===========================================
+// 2.2 TYPED.JS ANIMATION
+//===========================================
+if (document.getElementById("typed")) {
+  new Typed("#typed", {
+    strings: [
+      "Frontend Developer",
+      "Web Designer",
+      "Tech Enthusiast",
+      "Creative Developer",
+    ],
+    typespeed: 30,
+    backSpeed: 25,
+    backDelay: 1500,
+    loop: true,
   });
 }
 
 // ============================================================
-// 10. FORM VALIDATION & SUBMISSION
-// Modern form handling with validation
+// 3. ABOUT SECTION FUNCTIONS
 // ============================================================
+
+// ============================================================
+// 4. SERVICES SECTION FUNCTIONS
+// ============================================================
+
+// ============================================================
+// 5. SKILLS SECTION FUNCTIONS
+// ============================================================
+
+//===========================================
+// 5.1 SKILL PROGRESS BARS (ANIMATED)
+//===========================================
+function animateSkillBars() {
+  const skillBars = document.querySelectorAll(".skill-card");
+
+  skillBars.forEach((bar) => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            bar.style.animation = "slideInUp 0.5s ease-out";
+            observer.unobserve(bar);
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(bar);
+  });
+}
+
+animateSkillBars();
+
+// ============================================================
+// 6. CERTIFICATIONS SECTION FUNCTIONS
+// ============================================================
+
+// ============================================================
+// 7. STATISTICS SECTION FUNCTIONS
+// ============================================================
+
+//===========================================
+// 7.1 INTERSECTION OBSERVER FOR COUNTERS
+//===========================================
+function createCounterAnimation() {
+  const counters = document.querySelectorAll("[data-counter]");
+
+  counters.forEach((counter) => {
+    const target = parseInt(counter.dataset.counter);
+    let current = 0;
+    const increment = target / 100; // تقریبی رفتار
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && current === 0) {
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                counter.textContent = target;
+                clearInterval(timer);
+              } else {
+                counter.textContent = Math.floor(current);
+              }
+            }, 30);
+
+            observer.unobserve(counter);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    observer.observe(counter);
+  });
+}
+
+createCounterAnimation();
+
+// ============================================================
+// 8. PROJECTS SECTION FUNCTIONS
+// ============================================================
+
+// ============================================================
+// 9. CONTACT SECTION FUNCTIONS
+// ============================================================
+
+//===========================================
+// 9.1 FORM VALIDATION & SUBMISSION
+//===========================================
 const contactForm = document.querySelector(".contact-form");
 
 if (contactForm) {
@@ -220,9 +247,9 @@ if (contactForm) {
   });
 }
 
-//=====================================================
-// 11. Error messages show karne aur clear karne ke functions
-//=====================================================
+//===========================================
+// 9.2 Error messages show karne aur clear karne ke functions
+//===========================================
 function showError(input, message) {
   const formGroup = input.parentElement;
   input.classList.add("is-invalid");
@@ -246,27 +273,136 @@ function clearError(input) {
   }
 }
 
-// ============================================================
-// 12. TYPED.JS ANIMATION
-// ============================================================
-if (document.getElementById("typed")) {
-  new Typed("#typed", {
-    strings: [
-      "Frontend Developer",
-      "Web Designer",
-      "Tech Enthusiast",
-      "Creative Developer",
-    ],
-    typespeed: 30,
-    backSpeed: 25,
-    backDelay: 1500,
-    loop: true,
+//===========================================
+// 9.3 ENHANCED FORM SUCCESS MESSAGE
+//===========================================
+const contactFormElement = document.querySelector(".contact-form");
+
+if (contactFormElement) {
+  contactFormElement.addEventListener("submit", function (e) {
+    const submitBtn = this.querySelector(".btn-submit");
+    const originalText = submitBtn.innerHTML;
+
+    // Add success state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Sending...';
+
+    // Reset after 3 seconds (adjust based on your backend)
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+    }, 3000);
   });
 }
 
 // ============================================================
-// 13. RESPONSIVE HEADER BEHAVIOR
+// 10. FOOTER SECTION FUNCTIONS
 // ============================================================
+
+// ============================================================
+// GLOBAL UTILITY FUNCTIONS
+// ============================================================
+
+//===========================================
+// GLOBAL INITIALIZATION & SETUP
+//===========================================
+
+// Load saved theme and refresh animations on page load
+window.addEventListener("load", () => {
+  const saved = localStorage.getItem("theme");
+  if (saved === "light") {
+    body.classList.add("light-mode");
+  }
+
+  // Refresh AOS animations
+  if (window.AOS) {
+    AOS.refresh();
+  }
+
+  document.body.style.opacity = "1";
+});
+
+//===========================================
+// INITIALIZE AOS (Animate On Scroll)
+//===========================================
+document.addEventListener("DOMContentLoaded", function () {
+  AOS.init({
+    duration: 1000,
+    easing: "ease-in-out",
+    once: false,
+    offset: 100,
+  });
+});
+
+//===========================================
+// MOUSE SPOTLIGHT GLOW EFFECT
+//===========================================
+document.addEventListener("mousemove", (e) => {
+  document.body.style.setProperty("--x", e.clientX + "px");
+  document.body.style.setProperty("--y", e.clientY + "px");
+});
+
+// Glow effect ka div body mein add karna
+const glowDiv = document.createElement("div");
+glowDiv.classList.add("mouse-glow");
+document.body.appendChild(glowDiv);
+
+//===========================================
+// SMOOTH SCROLL SPY - Highlight Active Section
+//===========================================
+function updateActiveNav() {
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  window.addEventListener("scroll", () => {
+    let currentSection = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+
+      if (scrollY >= sectionTop - 200) {
+        currentSection = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === "#" + currentSection) {
+        link.classList.add("active");
+      }
+    });
+  });
+}
+
+updateActiveNav();
+
+//===========================================
+// BACK TO TOP BUTTON
+//===========================================
+const backToTopBtn = document.querySelector(".back-to-top");
+
+if (backToTopBtn) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 500) {
+      backToTopBtn.classList.add("active");
+    } else {
+      backToTopBtn.classList.remove("active");
+    }
+  });
+
+  backToTopBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+}
+
+//===========================================
+// RESPONSIVE HEADER BEHAVIOR
+//===========================================
 let lastScrollTop = 0;
 const header = document.querySelector("#header");
 
@@ -277,54 +413,16 @@ window.addEventListener("scroll", function () {
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
-// ============================================================
-// 14. LOADING ANIMATION & PAGE TRANSITION
-// صفحہ لوڈ ہوتے وقت خوبصورت animation
-// ============================================================
-window.addEventListener("load", () => {
-  document.body.style.opacity = "1";
-  if (window.AOS) {
-    AOS.refresh();
-  }
-});
-
-// Page fade in effect
+// Page fade in effect (CSS handles most of this via fadeInPage animation)
 document.body.style.opacity = "0";
 document.body.style.transition = "opacity 0.6s ease-in";
 setTimeout(() => {
   document.body.style.opacity = "1";
 }, 100);
 
-// ============================================================
-// 15. SKILL PROGRESS BARS (ANIMATED)
-// جب scroll ہو تو numbers animate ہوں
-// ============================================================
-function animateSkillBars() {
-  const skillBars = document.querySelectorAll(".skill-card");
-
-  skillBars.forEach((bar) => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            bar.style.animation = "slideInUp 0.5s ease-out";
-            observer.unobserve(bar);
-          }
-        });
-      },
-      { threshold: 0.1 },
-    );
-
-    observer.observe(bar);
-  });
-}
-
-animateSkillBars();
-
-// ============================================================
-// 16. PARALLAX SCROLL EFFECT
-// Mouse movement par images move ہوں
-// ============================================================
+//===========================================
+// PARALLAX SCROLL EFFECT
+//===========================================
 function initParallax() {
   const parallaxElements = document.querySelectorAll("[data-parallax]");
 
@@ -344,10 +442,9 @@ function initParallax() {
 
 initParallax();
 
-// ============================================================
-// 17. SMOOTH SCROLL WITH OFFSET
-// Navigation links smooth scroll with header offset
-// ============================================================
+//===========================================
+// SMOOTH SCROLL WITH OFFSET
+//===========================================
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     const href = this.getAttribute("href");
@@ -368,10 +465,9 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// ============================================================
-// 18. REAL-TIME CLOCK / LOCATION DISPLAY
-// صفحہ میں timestamp اور location دکھائیں
-// ============================================================
+//===========================================
+// REAL-TIME CLOCK / LOCATION DISPLAY
+//===========================================
 function updateTimeLocation() {
   // Show location if available
   if (navigator.geolocation) {
@@ -402,49 +498,9 @@ function updateTimeLocation() {
 // Call if needed
 updateTimeLocation();
 
-// ============================================================
-// 19. INTERSECTION OBSERVER FOR COUNTERS
-// Stats animation جب scroll ہو
-// ============================================================
-function createCounterAnimation() {
-  const counters = document.querySelectorAll("[data-counter]");
-
-  counters.forEach((counter) => {
-    const target = parseInt(counter.dataset.counter);
-    let current = 0;
-    const increment = target / 100; // تقریبی رفتار
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && current === 0) {
-            const timer = setInterval(() => {
-              current += increment;
-              if (current >= target) {
-                counter.textContent = target;
-                clearInterval(timer);
-              } else {
-                counter.textContent = Math.floor(current);
-              }
-            }, 30);
-
-            observer.unobserve(counter);
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
-
-    observer.observe(counter);
-  });
-}
-
-createCounterAnimation();
-
-// ============================================================
-// 20. LAZY LOADING IMAGES
-// Performance optimization
-// ============================================================
+//===========================================
+// LAZY LOADING IMAGES
+//===========================================
 const imageObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -460,64 +516,24 @@ document.querySelectorAll("img[data-src]").forEach((img) => {
   imageObserver.observe(img);
 });
 
-// enhanceMenuAnimation();
+//===========================================
+// SOCIAL LINKS ANIMATION
+//===========================================
+function initSocialLinks() {
+  const socialLinks = document.querySelectorAll(
+    'a[href*="github"], a[href*="linkedin"], a[href*="twitter"], a[href*="facebook"]',
+  );
 
-// ============================================================
-// 21. SOCIAL LINKS ANIMATION
-// Social icons hover effect
-// ============================================================
-// function initSocialLinks() {
-//   const socialLinks = document.querySelectorAll(
-//     'a[href*="github"], a[href*="linkedin"], a[href*="twitter"], a[href*="facebook"]',
-//   );
+  socialLinks.forEach((link) => {
+    link.addEventListener("mouseenter", () => {
+      link.style.transform = "scale(1.2) rotate(10deg)";
+      link.style.transition = "all 0.3s ease";
+    });
 
-//   socialLinks.forEach((link) => {
-//     link.addEventListener("mouseenter", () => {
-//       link.style.transform = "scale(1.2) rotate(10deg)";
-//       link.style.transition = "all 0.3s ease";
-//     });
-
-//     link.addEventListener("mouseleave", () => {
-//       link.style.transform = "scale(1) rotate(-10deg)";
-//     });
-//   });
-// }
-
-initSocialLinks();
-
-// ============================================================
-// 22. ENHANCED FORM SUCCESS MESSAGE
-// Form submission success notification
-// ============================================================
-const contactFormElement = document.querySelector(".contact-form");
-
-if (contactFormElement) {
-  contactFormElement.addEventListener("submit", function (e) {
-    const submitBtn = this.querySelector(".btn-submit");
-    const originalText = submitBtn.innerHTML;
-
-    // Add success state
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Sending...';
-
-    // Reset after 3 seconds (adjust based on your backend)
-    setTimeout(() => {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalText;
-      // Optional: Clear form
-      contactFormElement.reset();
-    }, 3000);
+    link.addEventListener("mouseleave", () => {
+      link.style.transform = "scale(1) rotate(-10deg)";
+    });
   });
 }
 
-// ============================================================
-// 23. CONSOLE MESSAGE (EASTER EGG)
-// ============================================================
-console.log(
-  "%c🎉 Welcome to Mureed Sajjad Portfolio! 🎉",
-  "font-size: 20px; color: #38bdf8; font-weight: bold;",
-);
-console.log(
-  "%cLooking for talented developers? Get in touch!",
-  "font-size: 14px; color: #e2e8f0;",
-);
+initSocialLinks();

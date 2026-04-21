@@ -7,6 +7,7 @@
   --text-main: #94a3b8;
   --text-bright: #ffffff;
   --primary-color: #38bdf8;
+  --card-bg: rgba(15, 30, 60, 0.4);
   --header-text: rgba(244, 160, 25, 0.95);
   --glow-color: rgba(56, 189, 248, 0.15);
 }
@@ -18,7 +19,7 @@ body.dark-mode {
   --text-main: #ffffff;
   --text-bright: #ffffff;
   --primary-color: #0066cc;
-  /* --card-bg: rgba(20, 30, 60, 0.6); */
+  --card-bg: rgba(20, 30, 60, 0.6);
   --glow-color: rgba(96, 165, 250, 0.2);
 }
 
@@ -29,11 +30,12 @@ body.light-mode {
   --text-main: #333333;
   --text-bright: #000000;
   --primary-color: #0066cc;
-  /* --card-bg: rgba(220, 230, 245, 0.4); */
+  --card-bg: rgba(220, 230, 245, 0.4);
   --glow-color: rgba(0, 102, 204, 0.261);
 }
 
-Light Mode Specific Styles body.light-mode .portfolio-item,
+/* Light Mode Specific Styles */
+body.light-mode .portfolio-item,
 body.light-mode .skill-card,
 body.light-mode .info-box,
 body.light-mode .contact-form,
@@ -88,7 +90,6 @@ body.light-mode .btn-outline-primary:hover {
   border-color: var(--bg-body);
 }
 
-
 .btn-primary i,
 .btn-outline-primary i {
   font-size: 1.1rem;
@@ -100,9 +101,8 @@ body.light-mode .btn-outline-primary:hover {
   transform: translateX(4px);
 }
 
-
 /* ==========================================================
-   1. GLOBAL STYLES
+   2. GLOBAL STYLES & RESET
    ========================================================== */
 
 /* Basic Reset */
@@ -113,6 +113,7 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   transition: background-color 0.5s ease, color 0.5s ease;
+  animation: fadeInPage 0.6s ease-out;
 }
 
 /* Mouse Spotlight Effect */
@@ -127,7 +128,6 @@ body {
   z-index: 9999;
 }
 
-
 * {
   margin: 0;
   padding: 0;
@@ -135,8 +135,37 @@ body {
   font-family: Poppins, sans-serif;
 }
 
+/* Section Common Styling */
+section {
+  scroll-margin-top: 110px;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+}
+
+h2 {
+  color: var(--text-bright);
+  font-weight: 700;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50px;
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 2px;
+  animation: slideInDown 0.6s ease-out;
+}
+
 /* ==========================================================
-   2. HEADER / NAVIGATION - MODERN DESIGN
+   3. HEADER / NAVIGATION SECTION
    ========================================================== */
 .logo a {
   font-size: 28px;
@@ -145,7 +174,6 @@ body {
   text-decoration: none;
   letter-spacing: 1px;
   text-transform: uppercase;
-
 }
 
 .logo span {
@@ -248,11 +276,6 @@ nav li {
   gap: 15px;
 }
 
-.social-icons {
-  display: flex;
-  gap: 10px;
-}
-
 .social-icons a,
 #darkToggle,
 #menuBtn {
@@ -302,9 +325,8 @@ nav li {
   border-bottom: 5px solid transparent;
 }
 
-
 /* ==========================================================
-   3. MAIN CONTENT AREA
+   4. HERO SECTION (HOME)
    ========================================================== */
 #main {
   margin-left: 0 !important;
@@ -313,35 +335,6 @@ nav li {
   transition: all 0.4s ease;
   background: linear-gradient(135deg, transparent 0%, rgba(56, 189, 248, 0.02) 100%);
   min-height: 100vh;
-}
-
-/* Section Common Styling */
-section {
-  scroll-margin-top: 110px;
-  border-radius: 10px;
-  transition: all 0.4s ease;
-}
-
-h2 {
-  color: var(--text-bright);
-  font-weight: 700;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
-  position: relative;
-  display: inline-block;
-}
-
-h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 50px;
-  height: 4px;
-  background: var(--primary-color);
-  border-radius: 2px;
-  animation: slideInDown 0.6s ease-out;
 }
 
 /* Hero Section */
@@ -592,42 +585,6 @@ h2::after {
   animation: bounce 2s ease-in-out infinite;
 }
 
-@keyframes floatUp {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-@keyframes bounce {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(10px);
-  }
-}
-
 #typed {
   color: var(--primary-color);
   font-weight: bold;
@@ -638,205 +595,8 @@ h2::after {
 }
 
 /* ==========================================================
-   4. PORTFOLIO CARDS (Focus & Blur Effect)
+   5. ABOUT SECTION
    ========================================================== */
-.portfolio-item {
-  background: var(--bg-body);
-  border: 5px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.4s ease;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-/* Blur Effect Logic */
-.portfolio-container:hover .portfolio-item {
-  opacity: 0.4;
-  filter: blur(2px);
-}
-
-.portfolio-container .portfolio-item:hover {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(-10px);
-  border-color: var(--primary-color);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
-}
-
-
-@media (max-width: 991px) {
-  .header {
-    width: 100% !important;
-    left: 0 !important;
-    padding: 10px 10px 0;
-    /* text-align: center; */
-
-  }
-
-  #menuBtn {
-    display: flex !important;
-    width: 40px !important;
-    height: 40px;
-  }
-
-  .nav-container {
-    padding: 0 15px;
-  }
-
-  .navbar-menu {
-    position: fixed;
-    top: -110vh;
-    left: 40% !important;
-    right: 5% !important;
-    width: 50% !important;
-    height: auto;
-    /* background: var(--bg-body); */
-    backdrop-filter: blur(30px);
-    padding: 40px 0;
-    border-radius: 20px;
-    border: 2px solid var(--primary-color);
-    transition: top 0.6s ease,
-      filter 0.5s ease,
-      opacity 0.5s ease;
-    z-index: 999;
-    border-bottom: 2px solid var(--primary-color);
-    margin-left: 0 !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  }
-
-  .navbar-menu.active {
-    top: 60px;
-  }
-
-  .navbar-menu.blur {
-    filter: blur(6px);
-    opacity: 0.5;
-  }
-
-  .navbar-menu:hover {
-    filter: blur(0);
-    opacity: 1;
-  }
-
-
-  .navbar-menu ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .hero-profile {
-    order: -1;
-  }
-
-  .profile-wrapper {
-    width: 250px;
-    height: 250px;
-  }
-
-
-}
-
-
-
-/* ==========================================================
-   5. MOBILE RESPONSIVE
-   ========================================================== */
-@media (max-width: 1199px) {
-  #header {
-    height: 70px;
-    padding: 0 30px;
-  }
-
-  .header-container {
-    gap: 30px;
-  }
-
-  .logo h1 {
-    font-size: 1.1rem;
-  }
-
-  .nav-links-row {
-    gap: 3px;
-  }
-
-  .nav-link {
-    font-size: 0.85rem;
-    padding: 8px 15px;
-  }
-
-  .hero-section {
-    padding: 80px 30px 60px;
-  }
-
-  .hero-container {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .profile-wrapper {
-    width: 300px;
-    height: 300px;
-  }
-
-  .profile-glow {
-    width: 350px;
-    height: 350px;
-  }
-
-  .float-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
-  }
-
-  .hero-title {
-    font-size: clamp(1.8rem, 6vw, 3.5rem);
-  }
-
-  .hero-buttons {
-    gap: 15px;
-  }
-
-  .btn-hero {
-    padding: 12px 25px;
-    font-size: 0.9rem;
-  }
-}
-
-
-.hero-section {
-  padding-top: 40px;
-}
-
-.hero-section h1 {
-  font-size: 2.5rem;
-}
-
-
-/* ==========================================================
-   6. MODERN ANIMATIONS & EFFECTS
-   ========================================================== */
-
-/* Hero Section Animations */
-.hero-title {
-  animation: slideInDown 0.8s ease-out;
-  letter-spacing: 1px;
-}
-
-.hero-subtitle {
-  animation: slideInUp 0.8s ease-out 0.2s backwards;
-  font-size: 1.5rem;
-  color: var(--primary-color);
-  margin: 15px 0;
-}
-
-.hero-description {
-  animation: fadeIn 0.8s ease-out 0.4s backwards;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin: 20px 0 30px;
-}
 
 /* About Image Animation */
 .about-image {
@@ -853,48 +613,155 @@ h2::after {
   border-color: var(--primary-color);
 }
 
-/* Skill Cards Animation */
-.skill-card {
+/* ==========================================================
+   6. SERVICES SECTION
+   ========================================================== */
+
+/* Info Box Styling */
+.info-box {
   background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.08) 100%);
-  border: 2px solid rgba(56, 189, 248, 0.2) !important;
+  border: 2px solid rgba(56, 189, 248, 0.2);
+  border-right: 2px solid rgba(56, 189, 248, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(10px);
+}
+
+.info-box:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(56, 189, 248, 0.25);
+  border-color: var(--primary-color);
+}
+
+.info-box p {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+  font-size: 1rem;
+}
+
+.info-box i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.info-box p:hover i {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* ==========================================================
+   7. SKILLS PROGRESS BARS SECTION
+   ========================================================== */
+
+.skill-progress-item {
+  margin-bottom: 30px;
+}
+
+.skill-header {
+  margin-bottom: 10px;
+}
+
+.skill-header h5 {
+  color: var(--text-bright);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.skill-percentage {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.progress {
+  height: 12px;
+  background: rgba(56, 189, 248, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.progress-bar {
+  border-radius: 10px;
+  transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================================
+   8. CERTIFICATIONS SECTION
+   ========================================================== */
+
+/* Institute Box */
+.institute-box {
+  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.08) 100%) !important;
+  border: 2px solid rgba(56, 189, 248, 0.3) !important;
   border-right: 2px solid rgba(56, 189, 248, 0.1) !important;
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  transform: translateY(0);
   border-radius: 12px;
   backdrop-filter: blur(10px);
 }
 
-.skill-card:hover {
-  transform: translateY(-12px) scale(1.02);
+.institute-box:hover {
+  transform: translateY(-10px) scale(1.02);
   box-shadow: 0 20px 40px rgba(56, 189, 248, 0.3);
   border-color: var(--primary-color) !important;
 }
 
-.skill-card h5 {
+.institute-box h4 {
   color: var(--primary-color);
-  font-weight: 600;
-  margin-bottom: 15px;
+  font-size: 1.3rem;
 }
 
-.skill-card p {
-  color: var(--text-main);
-  /* font-size: 0.95rem; */
-  /* line-height: 1.5; */
-}
+/* ==========================================================
+   9. STATISTICS/COUNTER SECTION
+   ========================================================== */
 
-/* Enhanced Portfolio Cards */
-.portfolio-item {
-  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.08) 100%);
-  border: 2px solid rgba(56, 189, 248, 0.2);
-  border-right: 2px solid rgba(56, 189, 248, 0.1);
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border-radius: 15px;
-  overflow: hidden;
-  position: relative;
-  baseline-shift: 0;
+.stat-box {
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+.stat-box:hover {
+  transform: translateY(-10px) scale(1.02);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 50px rgba(56, 189, 248, 0.2);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--text-bright);
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ==========================================================
+   10. PROJECTS SECTION
+   ========================================================== */
+
+/* Portfolio Cards */
+.portfolio-item {
+  background: var(--bg-body);
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Enhanced Portfolio Cards - Using ::before pseudo-element for shine effect */
 .portfolio-item::before {
   content: '';
   position: absolute;
@@ -945,408 +812,63 @@ h2::after {
   background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(56, 189, 248, 0.3));
 }
 
-/* Form Styling */
-.contact-form {
-  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.05) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  border-radius: 15px;
-}
-
-.form-control {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  color: var(--text-bright);
-  transition: all 0.3s ease;
-}
-
-.form-control:focus {
-  background: rgba(56, 189, 248, 0.1);
-  border-color: var(--primary-color);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-}
-
-.form-label {
-  color: var(--primary-color);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-/* Back to Top Button Animation */
-.back-to-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
-  background: var(--text-main);
-  color: var(--bg-body);
-  border-radius: 50%;
-  font-size: 24px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s ease;
-  z-index: 1000;
-  cursor: pointer;
-}
-
-.back-to-top.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-10px);
-}
-
-.back-to-top:hover {
-  transform: translateY(-20px);
-  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.5);
-}
-
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Keyframe Animations */
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes pulse {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-/* Section Padding */
-.section-padding {
-  padding: 80px 0 !important;
-}
-
-.section-title {
-  position: relative;
-  padding-bottom: 20px;
-  margin-bottom: 50px;
-  animation: slideInDown 0.6s ease-out;
-}
-
-.section-title h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--text-bright) 0%, var(--primary-color) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: 1px;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background: var(--primary-color);
-  border-radius: 2px;
-  animation: slideInDown 0.6s ease-out;
-}
-
-/* Active Navigation Link */
-.nav-link.active {
-  color: var(--text-bright) !important;
-  font-weight: 700;
-  border-bottom: 3px solid var(--primary-color);
-}
-
 /* ==========================================================
-   7. ADVANCED FEATURES CSS
+   11. PROJECT MODAL
    ========================================================== */
 
-/* Hamburger Menu Animation */
-.menu-toggle {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  background: var(--primary-color);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
+.project-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out;
+  overflow-y: auto;
+}
+
+.project-modal.active {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 1001;
 }
 
-.menu-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
-}
-
-.menu-toggle.active {
-  background: var(--text-bright);
-  color: var(--bg-body);
-  transform: rotate(90deg);
-}
-
-.menu-toggle i {
-  font-size: 24px;
-  transition: transform 0.3s ease;
-}
-
-/* Counter Animation */
-[data-counter] {
-  font-weight: 700;
-  color: var(--primary-color);
-  font-size: 2rem;
-  display: inline-block;
-}
-
-/* Loading Animation */
-@keyframes fadeInPage {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-body {
-  animation: fadeInPage 0.6s ease-out;
-}
-
-/* Image Loaded State */
-img.loaded {
-  animation: fadeIn 0.6s ease-out;
-}
-
-/* Parallax Element */
-[data-parallax] {
-  will-change: transform;
-}
-
-/* Info Box Styling */
-.info-box {
+.project-modal-content {
   background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.08) 100%);
   border: 2px solid rgba(56, 189, 248, 0.2);
-  border-right: 2px solid rgba(56, 189, 248, 0.1);
-  border-radius: 15px;
-  padding: 20px;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 25px 70px rgba(56, 189, 248, 0.3);
+  scrollbar-color: var(--primary-color) transparent;
+  scrollbar-width: thin;
 }
 
-.info-box:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(56, 189, 248, 0.25);
-  border-color: var(--primary-color);
-}
-
-.info-box p {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 15px 0;
-  font-size: 1rem;
-}
-
-.info-box i {
-  font-size: 1.5rem;
+.project-modal-close {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  font-size: 28px;
+  font-weight: bold;
   color: var(--primary-color);
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.info-box p:hover i {
-  transform: scale(1.2) rotate(10deg);
-}
-
-
-
-/* Institute Box */
-.institute-box {
-  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.08) 100%) !important;
-  border: 2px solid rgba(56, 189, 248, 0.3) !important;
-  border-right: 2px solid rgba(56, 189, 248, 0.1) !important;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-}
-
-.institute-box:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(56, 189, 248, 0.3);
-  border-color: var(--primary-color) !important;
-}
-
-.institute-box h4 {
-  color: var(--primary-color);
-  font-size: 1.3rem;
-}
-
-/* Social Links Enhancement */
-/* a[href*="github"], */
-a[href*="linkedin"],
-a[href*="twitter"],
-a[href*="facebook"] {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: rgba(56, 189, 248, 0.1);
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-  transition: all 0.4s ease;
-  margin: 0 8px;
-  overflow: hidden;
-  gap: 8px;
-  padding: 0 12px;
-
-}
-
-/* a[href*="github"]:hover, */
-a[href*="linkedin"]:hover,
-a[href*="twitter"]:hover,
-a[href*="facebook"]:hover {
-  width: 170px;
-  background: var(--primary-color);
-  color: var(--bg-body);
-  box-shadow: 0 0 20px rgba(10, 20, 24, 0.5);
-  transform: scale(1.1);
-}
-
-a [href*="github"]:hover span {
-  opacity: 1;
-}
-
-/* Scroll Animation Optimization */
-[data-aos] {
-  opacity: 0;
-}
-
-[data-aos].aos-animate {
-  opacity: 1;
-}
-
-/* Enhanced Input Fields */
-.form-control.is-invalid {
-  border-color: #dc3545 !important;
-  background-color: rgba(220, 53, 69, 0.1);
-}
-
-.form-control.is-invalid:focus {
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-}
-
-.error-message {
-  animation: slideInUp 0.3s ease-out;
-}
-
-/* Button Styles Enhancement */
-.btn {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-  pointer-events: none;
-}
-
-.btn:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-/* Link Hover Effects */
-a {
-  position: relative;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a.nav-link:after,
-.info-box a:after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary-color);
-  transition: width 0.3s ease;
-}
-
-a.nav-link:hover:after,
-.info-box a:hover:after {
-  width: 100%;
+.project-modal-close:hover {
+  transform: scale(1.2) rotate(90deg);
+  color: var(--text-bright);
 }
 
 /* ==========================================================
-   8. MODERN CONTACT SECTION STYLES
+   12. CONTACT SECTION
    ========================================================== */
 
 /* Contact Cards */
@@ -1432,6 +954,32 @@ a.nav-link:hover:after,
   font-size: 1.8rem;
 }
 
+/* Form Styling */
+.contact-form {
+  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.05) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 15px;
+}
+
+.form-control {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: var(--text-bright);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+.form-label {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
 .contact-form .form-label {
   color: var(--primary-color);
   font-weight: 600;
@@ -1489,7 +1037,7 @@ a.nav-link:hover:after,
 }
 
 /* ==========================================================
-   9. FOOTER STYLES WITH SOCIAL LINKS
+   13. FOOTER SECTION
    ========================================================== */
 
 #footer {
@@ -1581,199 +1129,326 @@ a.nav-link:hover:after,
   font-size: 0.85rem;
 }
 
-/* Responsive Improvements */
-@media (max-width: 768px) {
-  #header {
-    /* width: 280px; */
-    overflow-y: auto;
+/* ==========================================================
+   14. ANIMATIONS & EFFECTS
+   ========================================================== */
+
+/* Keyframe Animations */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
   }
 
-  #main {
-    margin-left: 280px;
-    padding: 40px 25px;
-  }
-
-  .header-top-row {
-    flex-direction: column;
-  }
-
-  .profile-info h3 {
-    font-size: 1.2rem;
-  }
-
-  .nav-links-row {
-    flex-direction: column;
-    padding: 20px 0;
-  }
-
-  .nav-links-row li a {
-    font-size: 0.95rem;
-    padding: 10px 15px;
-  }
-
-  .header-social-links {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .header-social-links a {
-    width: 40px;
-    height: 40px;
-    font-size: 1.1rem;
-  }
-
-  .menu-toggle {
-    width: 45px;
-    height: 45px;
-  }
-
-  .info-box p {
-    font-size: 0.95rem;
-  }
-
-
-
-  [data-counter] {
-    font-size: 1.5rem;
-  }
-
-  /* Contact Section Responsive */
-  .contact-card {
-    padding: 25px 15px;
-  }
-
-  .contact-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 1.7rem;
-  }
-
-  .contact-card h4 {
-    font-size: 1.1rem;
-  }
-
-  .contact-form-wrapper {
-    padding: 25px;
-  }
-
-  .contact-form-wrapper h3 {
-    font-size: 1.5rem;
-  }
-
-  /* Footer Responsive */
-  .social-icons {
-    gap: 10px;
-  }
-
-  .social-link {
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
-  }
-
-  #footer {
-    margin-top: 50px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 480px) {
-  #header {
-    width: 100%;
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes floatUp {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* Back to Top Button Animation */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--text-main);
+  color: var(--bg-body);
+  border-radius: 50%;
+  font-size: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.back-to-top.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-10px);
+}
+
+.back-to-top:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.5);
+}
+
+/* Loading Animation */
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Image Loaded State */
+img.loaded {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Parallax Element */
+[data-parallax] {
+  will-change: transform;
+}
+
+/* ==========================================================
+   15. RESPONSIVE DESIGN
+   ========================================================== */
+
+/* Mobile Responsive */
+@media (max-width: 991px) {
+  .header {
+    width: 100% !important;
+    left: 0 !important;
+    padding: 10px 10px 0;
+    /* text-align: center; */
+
+  }
+
+  #menuBtn {
+    display: flex !important;
+    width: 40px !important;
+    height: 40px;
+  }
+
+  .nav-container {
+    padding: 0 15px;
+  }
+
+  .navbar-menu {
+    position: fixed;
+    top: -110vh;
+    left: 40% !important;
+    right: 5% !important;
+    width: 50% !important;
     height: auto;
-    left: 0;
-    right: 0;
-    padding: 15px 10px;
-    margin-left: 0;
+    /* background: var(--bg-body); */
+    backdrop-filter: blur(30px);
+    padding: 40px 0;
+    border-radius: 20px;
+    border: 2px solid var(--primary-color);
+    transition: top 0.6s ease,
+      filter 0.5s ease,
+      opacity 0.5s ease;
+    z-index: 999;
+    border-bottom: 2px solid var(--primary-color);
+    margin-left: 0 !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  .navbar-menu.active {
+    top: 60px;
+  }
+
+  .navbar-menu.blur {
+    filter: blur(6px);
+    opacity: 0.5;
+  }
+
+  .navbar-menu:hover {
+    filter: blur(0);
+    opacity: 1;
+  }
+
+  .navbar-menu ul {
     flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .hero-profile {
+    order: -1;
+  }
+
+  .profile-wrapper {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Tablet and Smaller Screens */
+@media (max-width: 1199px) {
+  #header {
+    height: 70px;
+    padding: 0 30px;
+  }
+
+  .header-container {
+    gap: 30px;
+  }
+
+  .logo h1 {
+    font-size: 1.1rem;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 8px 15px;
+  }
+
+  .hero-section {
+    padding: 80px 30px 60px;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .profile-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+
+  .profile-glow {
+    width: 350px;
+    height: 350px;
+  }
+
+  .float-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
   }
 
   .hero-title {
-    font-size: 2.2rem !important;
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
   }
 
   .hero-buttons {
-    justify-content: center;
+    gap: 15px;
   }
 
-  #main {
-    margin-left: 0;
-    padding: 20px 15px;
-    margin-top: 0;
-  }
-
-  .profile-info {
-    flex-direction: column;
-  }
-
-  .profile-img-mobile {
-    width: 60px;
-    height: 60px;
-  }
-
-  .profile-info h3 {
-    font-size: 1rem;
-    margin-top: 10px;
-  }
-
-  .name-title {
-    font-size: 0.85rem;
-  }
-
-  .nav-links-row {
-    flex-direction: column;
-    padding: 10px 0;
-  }
-
-  .nav-links-row li a {
+  .btn-hero {
+    padding: 12px 25px;
     font-size: 0.9rem;
-    padding: 8px 10px;
+  }
+}
+
+/* Small Screens */
+@media (max-width: 768px) {
+  .progress {
+    height: 10px;
   }
 
-  .header-social-links {
-    justify-content: center;
-    margin-top: 15px;
+  .stat-box {
+    padding: 25px 15px;
   }
 
-  .header-social-links a {
-    width: 35px;
-    height: 35px;
-    font-size: 1rem;
+  .stat-number {
+    font-size: 2rem;
   }
 
-  .theme-toggle-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
+  .stat-label {
+    font-size: 0.9rem;
   }
 
-  /* Section Headings */
-  section h2 {
+  .project-modal-content {
+    padding: 25px;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+  .stat-box {
+    padding: 20px 10px;
+  }
+
+  .stat-number {
     font-size: 1.8rem;
   }
 
-  /* Contact Cards */
-  .contact-card {
-    padding: 20px 15px;
-  }
-
-  .contact-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-
-  .contact-form-wrapper {
+  .project-modal-content {
     padding: 20px;
-  }
-
-  .form-input,
-  .form-textarea {
-    font-size: 16px;
-  }
-
-  .social-link {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
+    width: 95%;
   }
 }

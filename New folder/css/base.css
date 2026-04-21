@@ -1,0 +1,139 @@
+/* ==========================================================
+   BASE & GLOBAL STYLES
+   ========================================================== */
+
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Body Styles */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: var(--text-base);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-bright);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+}
+
+h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    position: relative;
+    display: inline-block;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 2px;
+    animation: slideInDown 0.6s ease-out;
+}
+
+p {
+    color: var(--text-main);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition-base);
+}
+
+a:hover {
+    color: var(--text-bright);
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Lists */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Mouse Glow Effect */
+.mouse-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(300px circle at var(--x) var(--y), var(--glow-color), transparent 80%);
+    z-index: var(--z-glow);
+}
+
+/* Section Common Styling */
+section {
+    scroll-margin-top: 110px;
+    border-radius: var(--radius-lg);
+    transition: var(--transition-smooth);
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+/* Utility Classes */
+.section-padding {
+    padding: var(--spacing-3xl) 0 !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--text-main) !important;
+}
+
+.transition-smooth {
+    transition: var(--transition-smooth);
+}
+
+/* Main Content Area */
+#main {
+    margin-top: 80px;
+    padding: 0;
+    transition: var(--transition-smooth);
+    background: linear-gradient(135deg, transparent 0%, rgba(56, 189, 248, 0.02) 100%);
+    min-height: 100vh;
+}

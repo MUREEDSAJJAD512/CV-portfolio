@@ -1,0 +1,187 @@
+/* ==========================================================
+   MAIN STYLESHEET - Organized & Modular
+   ========================================================== */
+
+/* Import all CSS modules */
+@import url('variables.css');
+@import url('base.css');
+@import url('components.css');
+@import url('header.css');
+@import url('hero.css');
+@import url('sections.css');
+@import url('responsive.css');
+
+/* Additional utility animations */
+#typed {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.typed-cursor {
+    color: var(--primary-color);
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Scroll behavior optimization */
+[data-aos] {
+    opacity: 0;
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.08) 100%);
+    border: 2px solid var(--card-border);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+    animation: modalSlide 0.3s ease-out;
+}
+
+.modal-content.modal-sm {
+    width: 85%;
+    max-width: 400px;
+}
+
+.modal-content.modal-lg {
+    width: 95%;
+    max-width: 800px;
+}
+
+@keyframes modalSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 15px;
+}
+
+.modal-title {
+    color: var(--text-bright);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 24px;
+    cursor: pointer;
+    transition: var(--transition-base);
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    color: var(--text-bright);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    color: var(--text-main);
+    line-height: 1.8;
+}
+
+.modal-body img {
+    width: 100%;
+    margin: 15px 0;
+    border-radius: var(--radius-lg);
+}
+
+/* Overlay scroll */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-body);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(56, 189, 248, 0.8);
+}
+
+/* Print Styles */
+@media print {
+
+    .header,
+    .back-to-top,
+    .modal-overlay {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    section {
+        page-break-inside: avoid;
+    }
+}
