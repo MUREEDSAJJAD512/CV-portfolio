@@ -55,8 +55,11 @@ document.addEventListener("click", function (e) {
     if (!navbar.contains(e.target) && !menuBtn.contains(e.target)) {
       navbar.classList.remove("active");
 
-      icon.classList.remove("bi-x");
-      icon.classList.add("bi-list");
+      const icon = menuBtn.querySelector("i");
+      if (icon) {
+        icon.classList.remove("bi-x");
+        icon.classList.add("bi-list");
+      }
     }
   }
 });
@@ -83,6 +86,61 @@ darkToggle.addEventListener("click", () => {
     localStorage.setItem("theme", "dark");
   }
 });
+
+//===========================================
+// 2.2 DOWNLOAD RESUME FUNCTION
+//===========================================
+function downloadResume(event) {
+  // Prevent default link behavior
+  event.preventDefault();
+
+  // Create a temporary link element
+  const link = document.createElement("a");
+  link.href = "CV WEB.MS.pdf";
+  link.download = "Mureed_Sajjad_CV.pdf";
+
+  // Add to DOM and trigger download
+  document.body.appendChild(link);
+  link.click();
+
+  // Remove from DOM
+  document.body.removeChild(link);
+
+  // Optional: Show success message
+  showDownloadMessage();
+}
+
+// Download success message function
+function showDownloadMessage() {
+  // Create success message element
+  const message = document.createElement("div");
+  message.textContent = "✅ CV Downloaded Successfully!";
+  message.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    z-index: 10000;
+    animation: slideInRight 0.3s ease-out;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  `;
+
+  document.body.appendChild(message);
+
+  // Remove message after 3 seconds
+  setTimeout(() => {
+    message.style.animation = "slideOutRight 0.3s ease-out";
+    setTimeout(() => {
+      if (message.parentNode) {
+        message.parentNode.removeChild(message);
+      }
+    }, 300);
+  }, 3000);
+}
 
 //===========================================
 // 2.2 TYPED.JS ANIMATION
@@ -188,6 +246,59 @@ createCounterAnimation();
 // ============================================================
 // 8. PROJECTS SECTION FUNCTIONS
 // ============================================================
+
+//===========================================
+// 8.1 PROJECT MODAL FUNCTIONS
+//===========================================
+
+// Project Modal ko open karne ka function
+function openProjectModal(title, description, technologies, link, imageSrc) {
+  // Modal elements ko select karna
+  const modal = document.getElementById("projectModal");
+  const modalTitle = document.getElementById("modalProjectTitle");
+  const modalDesc = document.getElementById("modalProjectDesc");
+  const modalTech = document.getElementById("modalProjectTech");
+  const modalLink = document.getElementById("modalProjectLink");
+  const modalImage = document.getElementById("modalProjectImage");
+
+  // Modal content ko update karna
+  if (modalTitle) modalTitle.textContent = title;
+  if (modalDesc) modalDesc.textContent = description;
+  if (modalTech) modalTech.textContent = technologies;
+  if (modalLink) modalLink.href = link;
+  if (modalImage) modalImage.src = imageSrc;
+
+  // Modal ko show karna
+  if (modal) {
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden"; // Background scroll disable
+  }
+}
+
+// Project Modal ko close karne ka function
+function closeProjectModal() {
+  const modal = document.getElementById("projectModal");
+
+  if (modal) {
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto"; // Background scroll enable
+  }
+}
+
+// Modal ke bahar click karne par close karna
+document.addEventListener("click", function (e) {
+  const modal = document.getElementById("projectModal");
+  if (modal && e.target === modal) {
+    closeProjectModal();
+  }
+});
+
+// Escape key press par modal close karna
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    closeProjectModal();
+  }
+});
 
 // ============================================================
 // 9. CONTACT SECTION FUNCTIONS

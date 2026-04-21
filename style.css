@@ -1,15 +1,23 @@
 /* ==========================================================
-   1. GLOBAL VARIABLES & THEMES
+   1. GLOBAL VARIABLES & THEMES - CSS Variables for colors and themes
    ========================================================== */
 :root {
   --bg-body: #0f172a;
+  /* Main background color for dark theme */
   --bg-header: rgba(15, 23, 42, 0.8);
+  /* Header background with transparency */
   --text-main: #94a3b8;
+  /* Primary text color */
   --text-bright: #ffffff;
+  /* Bright/white text color */
   --primary-color: #38bdf8;
+  /* Main accent color (cyan blue) */
   --card-bg: rgba(15, 30, 60, 0.4);
+  /* Card background with transparency */
   --header-text: rgba(244, 160, 25, 0.95);
+  /* Header text color */
   --glow-color: rgba(56, 189, 248, 0.15);
+  /* Glow effect color */
 }
 
 /* Dark Mode Theme */
@@ -101,38 +109,253 @@ body.light-mode .btn-outline-primary:hover {
   transform: translateX(4px);
 }
 
-/* ==========================================================
-   2. GLOBAL STYLES & RESET
-   ========================================================== */
-
-/* Basic Reset */
-body {
-  background-color: var(--bg-body);
-  color: var(--text-main);
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  transition: background-color 0.5s ease, color 0.5s ease;
-  animation: fadeInPage 0.6s ease-out;
+/* Professional GitHub Button - Modern, sleek design with hover effects */
+.btn-github-professional {
+  display: inline-flex;
+  /* Flexbox for perfect alignment */
+  align-items: center;
+  /* Center items vertically */
+  gap: 10px;
+  /* Space between icon and text */
+  padding: 12px 24px;
+  /* Comfortable padding */
+  background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+  /* GitHub dark gradient */
+  color: #ffffff;
+  /* White text */
+  text-decoration: none;
+  /* Remove underline */
+  border: 2px solid #24292e;
+  /* Dark border */
+  border-radius: 12px;
+  /* Rounded corners */
+  font-weight: 600;
+  /* Semi-bold font */
+  font-size: 0.95rem;
+  /* Slightly smaller font */
+  letter-spacing: 0.5px;
+  /* Slight letter spacing */
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Smooth transitions */
+  position: relative;
+  /* For pseudo-elements */
+  overflow: hidden;
+  /* Hide overflow for animations */
+  box-shadow: 0 4px 15px rgba(36, 41, 46, 0.3);
+  /* Subtle shadow */
+  backdrop-filter: blur(10px);
+  /* Blur effect */
+  animation: gentlePulse 2s infinite;
+  /* Subtle pulse animation */
 }
 
-/* Mouse Spotlight Effect */
+.btn-github-professional::before {
+  content: '';
+  /* Pseudo-element for background animation */
+  position: absolute;
+  /* Absolute positioning */
+  top: 0;
+  left: -100%;
+  /* Start from left */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  /* Shine effect */
+  transition: left 0.6s ease;
+  /* Smooth slide animation */
+}
+
+.btn-github-professional::after {
+  content: '';
+  /* Pseudo-element for border glow */
+  position: absolute;
+  /* Absolute positioning */
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #24292e, #0366d6, #24292e);
+  /* Border gradient */
+  border-radius: 14px;
+  /* Slightly larger radius */
+  z-index: -1;
+  /* Behind main button */
+  opacity: 0;
+  /* Initially hidden */
+  transition: opacity 0.4s ease;
+  /* Smooth opacity transition */
+}
+
+.btn-github-professional:hover {
+  background: linear-gradient(135deg, #1a1e22 0%, #24292e 100%);
+  /* Reverse gradient on hover */
+  border-color: #0366d6;
+  /* GitHub blue border */
+  transform: translateY(-2px) scale(1.02);
+  /* Lift and slight scale effect */
+  box-shadow: 0 8px 25px rgba(3, 102, 214, 0.4);
+  /* Enhanced shadow with blue tint */
+  color: #ffffff;
+  /* Ensure text stays white */
+  animation: none;
+  /* Stop pulse on hover */
+}
+
+.btn-github-professional:hover::before {
+  left: 100%;
+  /* Slide shine effect to right */
+}
+
+.btn-github-professional:hover::after {
+  opacity: 1;
+  /* Show border glow on hover */
+}
+
+.btn-github-professional i {
+  font-size: 1.1rem;
+  /* Icon size */
+  transition: transform 0.3s ease;
+  /* Smooth icon animation */
+  z-index: 1;
+  /* Above pseudo-elements */
+}
+
+.btn-github-professional:hover i {
+  transform: scale(1.1) rotate(5deg);
+  /* Scale and rotate icon on hover */
+}
+
+.btn-github-professional span {
+  font-weight: 600;
+  /* Bold text */
+  transition: all 0.3s ease;
+  /* Smooth text transitions */
+  z-index: 1;
+  /* Above pseudo-elements */
+}
+
+.btn-github-professional:hover span {
+  color: #ffffff;
+  /* Ensure text stays white */
+}
+
+/* Subtle pulse animation for attention */
+@keyframes gentlePulse {
+
+  0%,
+  100% {
+    box-shadow: 0 4px 15px rgba(36, 41, 46, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 4px 20px rgba(36, 41, 46, 0.4);
+  }
+}
+
+/* Focus state for accessibility */
+.btn-github-professional:focus {
+  outline: none;
+  /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.5);
+  /* Blue focus ring */
+}
+
+/* Active state for button press */
+.btn-github-professional:active {
+  transform: translateY(0) scale(0.98);
+  /* Slight press effect */
+  transition: transform 0.1s ease;
+  /* Quick transition */
+}
+
+/* Light mode adjustments for GitHub button */
+body.light-mode .btn-github-professional {
+  background: linear-gradient(135deg, #ffffff 0%, #f6f8fa 100%);
+  /* Light gradient */
+  color: #24292e;
+  /* Dark text */
+  border-color: #d1d5db;
+  /* Light border */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+}
+
+body.light-mode .btn-github-professional:hover {
+  background: linear-gradient(135deg, #f6f8fa 0%, #ffffff 100%);
+  /* Reverse light gradient */
+  border-color: #0366d6;
+  /* GitHub blue border */
+  box-shadow: 0 8px 25px rgba(3, 102, 214, 0.2);
+  /* Blue shadow */
+  color: #24292e;
+  /* Keep dark text */
+}
+
+/* Mobile responsive for GitHub button */
+@media (max-width: 768px) {
+  .btn-github-professional {
+    padding: 10px 20px;
+    /* Smaller padding on mobile */
+    font-size: 0.9rem;
+    /* Smaller font on mobile */
+    gap: 8px;
+    /* Smaller gap on mobile */
+  }
+
+  .btn-github-professional i {
+    font-size: 1rem;
+    /* Smaller icon on mobile */
+  }
+}
+
+/* ==========================================================
+   2. GLOBAL STYLES & RESET - Basic styling and CSS reset
+   ========================================================== */
+
+/* Basic Reset - Removes default browser margins and padding */
+body {
+  background-color: var(--bg-body);
+  /* Sets background color using CSS variable */
+  color: var(--text-main);
+  /* Sets text color using CSS variable */
+  font-family: 'Inter', sans-serif;
+  /* Sets primary font family */
+  overflow-x: hidden;
+  /* Prevents horizontal scrolling */
+  scroll-behavior: smooth;
+  /* Enables smooth scrolling */
+  transition: background-color 0.5s ease, color 0.5s ease;
+  /* Smooth theme transitions */
+  animation: fadeInPage 0.6s ease-out;
+  /* Page fade-in animation */
+}
+
+/* Mouse Spotlight Effect - Creates glowing cursor effect */
 .mouse-glow {
   position: fixed;
+  /* Fixed position relative to viewport */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+  /* Doesn't interfere with mouse events */
   background: radial-gradient(300px circle at var(--x) var(--y), var(--glow-color), transparent 80%);
+  /* Radial gradient following mouse */
   z-index: 9999;
+  /* High z-index to appear above content */
 }
 
+/* Universal Reset - Applies box-sizing and font-family to all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* Includes padding and border in width/height calculations */
   font-family: Poppins, sans-serif;
+  /* Secondary font family */
 }
 
 /* Section Common Styling */
@@ -165,34 +388,53 @@ h2::after {
 }
 
 /* ==========================================================
-   3. HEADER / NAVIGATION SECTION
+   3. HEADER / NAVIGATION SECTION - Fixed header with navigation
    ========================================================== */
+
+/* Logo Styling - Brand name/logo in header */
 .logo a {
   font-size: 28px;
+  /* Large font size for logo */
   font-weight: 800;
+  /* Extra bold font weight */
   color: var(--text-bright);
+  /* Bright text color */
   text-decoration: none;
+  /* Removes underline from link */
   letter-spacing: 1px;
+  /* Slight letter spacing */
   text-transform: uppercase;
+  /* Converts text to uppercase */
 }
 
+/* Logo span color - Special color for part of logo */
 .logo span {
   color: #00f2ff;
-  /* Dot ka color Cyan rakhne ke liye */
+  /* Cyan color for logo accent */
 }
 
+/* Main Header Container - Fixed header at top of page */
 .header {
   position: fixed;
+  /* Fixed position at top of viewport */
   top: 0;
   left: 0;
   width: 100%;
+  /* Full width */
   padding: 15px 0;
+  /* Vertical padding */
   z-index: 1000;
+  /* High z-index to stay above content */
   transition: all 0.4s ease;
+  /* Smooth transitions */
   background: var(--bg-header);
+  /* Semi-transparent background */
   backdrop-filter: blur(15px);
+  /* Blur effect behind header */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* Subtle border */
   overflow: visible !important;
+  /* Ensures content doesn't get cut off */
 }
 
 /* Jab page scroll ho to header ka rang thora dark ho jaye */
@@ -326,53 +568,88 @@ nav li {
 }
 
 /* ==========================================================
-   4. HERO SECTION (HOME)
+   4. HERO SECTION (HOME) - Main landing section with intro and profile
    ========================================================== */
+
+/* Main Content Container - Contains all page content except header */
 #main {
   margin-left: 0 !important;
+  /* Removes any left margin */
   margin-top: 80px;
+  /* Space for fixed header */
   padding: 0;
+  /* No padding */
   transition: all 0.4s ease;
+  /* Smooth transitions */
   background: linear-gradient(135deg, transparent 0%, rgba(56, 189, 248, 0.02) 100%);
+  /* Subtle gradient background */
   min-height: 100vh;
+  /* Full viewport height */
 }
 
-/* Hero Section */
+/* Hero Section Container - Main landing area */
 .hero-section {
   position: relative;
+  /* Relative positioning for child elements */
   min-height: 100vh;
+  /* Full viewport height */
   display: flex;
+  /* Flexbox layout */
   align-items: center;
+  /* Center content vertically */
   justify-content: center;
+  /* Center content horizontally */
   padding: 100px 50px 80px;
+  /* Padding: top, sides, bottom */
   overflow: hidden;
+  /* Hide overflowing content */
 }
 
+/* Hero Content Grid - Two-column layout for content and profile */
 .hero-container {
   min-height: 100vh;
+  /* Full viewport height */
   display: grid;
+  /* CSS Grid layout */
   justify-content: center;
+  /* Center grid horizontally */
   grid-template-columns: 1fr 1fr;
+  /* Two equal columns */
   gap: 60px;
+  /* Gap between columns */
   align-items: center;
+  /* Center items vertically */
   max-width: 1400px;
+  /* Maximum width */
   width: 100%;
+  /* Full width within max-width */
   margin: 0 auto;
+  /* Center horizontally */
 }
 
+/* Hero Badge - Small label/tag above title */
 .hero-badge {
   color: var(--primary-color);
+  /* Primary color text */
   font-weight: 700;
+  /* Bold font weight */
   font-size: 0.85rem;
+  /* Small font size */
   letter-spacing: 2px;
+  /* Wide letter spacing */
   text-transform: uppercase;
+  /* Uppercase text */
   padding: 5px 15px;
+  /* Padding around text */
   border: 1px solid rgba(56, 189, 248, 0.3);
+  /* Semi-transparent border */
   border-radius: 20px;
+  /* Rounded corners */
   background: rgba(56, 189, 248, 0.08);
+  /* Semi-transparent background */
 }
 
-/* Hero Title */
+/* Hero Title - Main heading */
 .hero-title {
   font-size: clamp(2.5rem, 8vw, 4.5rem);
   font-weight: 900;
@@ -499,69 +776,20 @@ nav li {
   animation: floatUp 3s ease-in-out infinite;
 }
 
-/* Floating Icons */
-.floating-icons {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.float-icon {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.1) 100%);
-  border: 2px solid rgba(56, 189, 248, 0.3);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: var(--primary-color);
-  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
-  animation: float 3s ease-in-out infinite;
-  z-index: 1;
-}
-
-.float-icon:hover {
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(56, 189, 248, 0.15) 100%);
-  border-color: var(--primary-color);
-  box-shadow: 0 15px 40px rgba(56, 189, 248, 0.4);
-  transform: scale(1.1);
-}
-
-.icon-1 {
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation-delay: 0s;
-}
-
-.icon-2 {
-  top: 30%;
-  right: -40px;
-  animation-delay: 0.5s;
-}
-
-.icon-3 {
-  bottom: 30%;
-  right: -30px;
-  animation-delay: 1s;
-}
-
-.icon-4 {
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation-delay: 1.5s;
-}
-
 /* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
   bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.8s ease-out 0.8s backwards;
+
+  /* extra  */
+
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -813,58 +1041,97 @@ nav li {
 }
 
 /* ==========================================================
-   11. PROJECT MODAL
+   11. PROJECT MODAL - Popup modal for project details
    ========================================================== */
 
+/* Modal Overlay - Dark background behind modal */
 .project-modal {
   display: none;
+  /* Hidden by default */
   position: fixed;
+  /* Fixed position covers entire screen */
   z-index: 2000;
+  /* High z-index above other content */
   left: 0;
   top: 0;
   width: 100%;
+  /* Full width */
   height: 100%;
+  /* Full height */
   background: rgba(0, 0, 0, 0.8);
+  /* Dark semi-transparent background */
   backdrop-filter: blur(5px);
+  /* Blur effect on background */
   animation: fadeIn 0.3s ease-out;
+  /* Fade-in animation */
   overflow-y: auto;
+  /* Allow vertical scrolling if needed */
 }
 
+/* Active Modal State - Shows modal when active class is added */
 .project-modal.active {
   display: flex;
+  /* Display as flexbox */
   align-items: center;
+  /* Center content vertically */
   justify-content: center;
+  /* Center content horizontally */
 }
 
+/* Modal Content Container - Main modal content area */
 .project-modal-content {
   background: linear-gradient(135deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.08) 100%);
+  /* Gradient background */
   border: 2px solid rgba(56, 189, 248, 0.2);
+  /* Semi-transparent border */
   border-radius: 20px;
+  /* Rounded corners */
   padding: 40px;
+  /* Padding inside modal */
   max-width: 900px;
+  /* Maximum width */
   width: 90%;
+  /* Responsive width */
   max-height: 90vh;
+  /* Maximum height */
   overflow-y: auto;
+  /* Allow scrolling if content is tall */
   position: relative;
+  /* Relative positioning for close button */
   box-shadow: 0 25px 70px rgba(56, 189, 248, 0.3);
+  /* Glow shadow effect */
   scrollbar-color: var(--primary-color) transparent;
+  /* Custom scrollbar color */
   scrollbar-width: thin;
+  /* Thin scrollbar */
 }
 
+/* Modal Close Button - X button to close modal */
 .project-modal-close {
   position: absolute;
+  /* Absolute position in top-right */
   right: 25px;
+  /* Distance from right edge */
   top: 15px;
+  /* Distance from top edge */
   font-size: 28px;
+  /* Large font size */
   font-weight: bold;
+  /* Bold text */
   color: var(--primary-color);
+  /* Primary color */
   cursor: pointer;
+  /* Cursor changes to pointer */
   transition: all 0.3s ease;
+  /* Smooth transitions */
 }
 
+/* Close Button Hover Effect - Animation on hover */
 .project-modal-close:hover {
   transform: scale(1.2) rotate(90deg);
+  /* Scale up and rotate */
   color: var(--text-bright);
+  /* Change color */
 }
 
 /* ==========================================================
@@ -1146,15 +1413,27 @@ nav li {
   }
 }
 
-@keyframes slideInUp {
+@keyframes slideInRight {
   from {
+    transform: translateX(50px);
     opacity: 0;
-    transform: translateY(30px);
   }
 
   to {
+    transform: translateX(0);
     opacity: 1;
-    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(50px);
+    opacity: 0;
   }
 }
 
@@ -1281,48 +1560,100 @@ img.loaded {
 }
 
 /* ==========================================================
-   15. RESPONSIVE DESIGN
+   15. RESPONSIVE DESIGN - Mobile and tablet breakpoints
    ========================================================== */
 
-/* Mobile Responsive */
+/* Mobile Responsive - For screens smaller than 991px (tablets and phones) */
 @media (max-width: 991px) {
   .header {
     width: 100% !important;
+    /* Full width on mobile */
     left: 0 !important;
+    /* Align to left edge */
     padding: 10px 10px 0;
-    /* text-align: center; */
-
+    /* Reduced padding for mobile */
   }
 
   #menuBtn {
     display: flex !important;
-    width: 40px !important;
-    height: 40px;
+    /* Show mobile menu toggle button */
+    width: 45px !important;
+    /* Slightly larger for better touch */
+    height: 45px !important;
+    /* Slightly larger for better touch */
+    background: rgba(56, 189, 248, 0.1);
+    /* Subtle background */
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    /* Subtle border */
+    border-radius: 10px;
+    /* Rounded corners */
+    color: var(--primary-color);
+    /* Professional color */
+    font-size: 20px;
+    /* Appropriate icon size */
+    transition: all 0.3s ease;
+    /* Smooth transitions */
   }
 
-  .nav-container {
-    padding: 0 15px;
+  #menuBtn:hover {
+    background: rgba(56, 189, 248, 0.2);
+    /* Slightly more prominent on hover */
+    border-color: var(--primary-color);
+    /* Solid border on hover */
+    transform: scale(1.05);
+    /* Subtle scale effect */
+  }
+
+  .logo a {
+    font-size: 20px;
+    /* Smaller, professional font size on mobile */
+    font-weight: 700;
+    /* Maintain bold but not too heavy */
+    letter-spacing: 0.5px;
+    /* Tighter letter spacing for mobile */
+  }
+
+  .logo span {
+    color: #00f2ff;
+    /* Keep the accent color */
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* Professional spacing */
   }
 
   .navbar-menu {
     position: fixed;
+    /* Fixed position for slide-down menu */
     top: -110vh;
-    left: 40% !important;
-    right: 5% !important;
-    width: 50% !important;
+    /* Hidden above screen initially */
+    left: 10px;
+    /* Small left margin for professional look */
+    right: 10px;
+    /* Small right margin for professional look */
+    width: auto;
+    /* Auto width for full coverage minus margins */
     height: auto;
-    /* background: var(--bg-body); */
-    backdrop-filter: blur(30px);
-    padding: 40px 0;
-    border-radius: 20px;
-    border: 2px solid var(--primary-color);
-    transition: top 0.6s ease,
-      filter 0.5s ease,
-      opacity 0.5s ease;
+    /* Auto height */
+    background: rgba(15, 23, 42, 0.95);
+    /* Semi-transparent background */
+    backdrop-filter: blur(20px);
+    /* Professional blur effect */
+    padding: 30px 20px;
+    /* Comfortable padding */
+    border-radius: 15px;
+    /* Rounded corners */
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    /* Subtle border */
+    transition: top 0.5s ease,
+      filter 0.3s ease,
+      opacity 0.3s ease;
     z-index: 999;
-    border-bottom: 2px solid var(--primary-color);
-    margin-left: 0 !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* Professional shadow */
   }
 
   .navbar-menu.active {
@@ -1342,16 +1673,78 @@ img.loaded {
   .navbar-menu ul {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
+    /* Comfortable spacing */
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  .hero-profile {
-    order: -1;
+  .navbar-menu .nav-link {
+    color: var(--text-bright);
+    /* Bright text color */
+    text-decoration: none;
+    font-size: 16px;
+    /* Professional font size */
+    font-weight: 500;
+    /* Medium weight */
+    padding: 12px 24px;
+    /* Comfortable padding */
+    border-radius: 25px;
+    /* Rounded corners */
+    transition: all 0.3s ease;
+    /* Smooth transitions */
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtle background */
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    /* Subtle border */
+    min-width: 150px;
+    /* Consistent width */
+    text-align: center;
+    /* Center text */
   }
 
-  .profile-wrapper {
-    width: 250px;
-    height: 250px;
+  .navbar-menu .nav-link:hover,
+  .navbar-menu .nav-link.active {
+    color: #000;
+    background: linear-gradient(135deg, #00f2ff, #38bdf8);
+    /* Professional gradient */
+    border-color: #00f2ff;
+    /* Matching border */
+    transform: translateY(-2px);
+    /* Subtle lift effect */
+    box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3);
+    /* Professional shadow */
+  }
+
+  .social-icons a,
+  #darkToggle {
+    width: 42px;
+    /* Slightly larger for mobile touch */
+    height: 42px;
+    /* Slightly larger for mobile touch */
+    font-size: 18px;
+    /* Appropriate icon size */
+    border-radius: 10px;
+    /* Rounded corners */
+    background: rgba(56, 189, 248, 0.1);
+    /* Subtle background */
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    /* Subtle border */
+    color: var(--primary-color);
+    /* Professional color */
+    transition: all 0.3s ease;
+    /* Smooth transitions */
+  }
+
+  .social-icons a:hover,
+  #darkToggle:hover {
+    background: rgba(56, 189, 248, 0.2);
+    /* More prominent on hover */
+    border-color: var(--primary-color);
+    /* Solid border on hover */
+    transform: scale(1.05);
+    /* Subtle scale effect */
   }
 }
 
@@ -1366,8 +1759,18 @@ img.loaded {
     gap: 30px;
   }
 
-  .logo h1 {
-    font-size: 1.1rem;
+  .logo a {
+    font-size: 20px;
+    /* Smaller, professional font size on mobile */
+    font-weight: 700;
+    /* Maintain bold but not too heavy */
+    letter-spacing: 0.5px;
+    /* Tighter letter spacing for mobile */
+  }
+
+  .logo span {
+    color: #00f2ff;
+    /* Keep the accent color */
   }
 
   .nav-link {
@@ -1384,6 +1787,11 @@ img.loaded {
     gap: 40px;
   }
 
+  .hero-profile {
+    order: -1;
+    /* Profile image comes first on mobile */
+  }
+
   .profile-wrapper {
     width: 300px;
     height: 300px;
@@ -1392,12 +1800,6 @@ img.loaded {
   .profile-glow {
     width: 350px;
     height: 350px;
-  }
-
-  .float-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
   }
 
   .hero-title {
@@ -1450,5 +1852,45 @@ img.loaded {
   .project-modal-content {
     padding: 20px;
     width: 95%;
+  }
+
+  /* Image responsiveness improvements */
+  .about-image,
+  .profile-image {
+    max-width: 100% !important;
+    height: auto !important;
+    width: 250px !important;
+    margin: 0 auto;
+  }
+
+  .portfolio-item img {
+    max-width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+  }
+
+  .hero-profile {
+    margin-bottom: 30px;
+  }
+
+  .profile-wrapper {
+    width: 200px !important;
+    height: 200px !important;
+  }
+
+  .profile-glow {
+    width: 250px !important;
+    height: 250px !important;
+  }
+
+  /* Mobile menu improvements */
+  .navbar-menu {
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+  }
+
+  .navbar-menu.active {
+    top: 70px;
   }
 }
