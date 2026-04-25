@@ -305,11 +305,49 @@ document.addEventListener("keydown", function (e) {
 // ============================================================
 
 //===========================================
-// 9.1 FORM VALIDATION & SUBMISSION
+// 9.1 ADVANCED FORM VALIDATION & SUBMISSION
 //===========================================
 const contactForm = document.querySelector(".contact-form");
+const contactFormId = document.getElementById("contactForm");
 
 if (contactForm) {
+  // Real-time validation on input
+  const inputs = contactForm.querySelectorAll(".form-control, textarea");
+  
+  inputs.forEach(input => {
+    input.addEventListener("blur", function() {
+      validateField(this);
+    });
+
+    input.addEventListener("input", function() {
+      if (this.classList.contains("is-invalid")) {
+        validateField(this);
+      }
+    });
+  });
+
+  // Character count for message
+  const messageField = document.getElementById("message");
+  if (messageField) {
+    messageField.addEventListener("input", function() {
+      const charCount = document.getElementById("charCount");
+      const length = this.value.length;
+      charCount.textContent = length;
+
+      // Warn if approaching limit
+      if (length > 400) {
+        document.querySelector(".char-count").classList.add("warning");
+      } else if (length > 500) {
+        document.querySelector(".char-count").classList.add("limit");
+        this.value = this.value.substring(0, 500);
+        charCount.textContent = "500";
+      } else {
+        document.querySelector(".char-count").classList.remove("warning", "limit");
+      }
+    });
+  }
+
+  // Form submission
   contactForm.addEventListener("submit", function (e) {
     // Get form inputs
     const name = document.getElementById("name");
@@ -323,8 +361,12 @@ if (contactForm) {
     if (!name.value.trim()) {
       showError(name, "Name is required");
       isValid = false;
+    } else if (name.value.trim().length < 2) {
+      showError(name, "Name must be at least 2 characters");
+      isValid = false;
     } else {
       clearError(name);
+      markFieldValid(name);
     }
 
     // Validate email
@@ -334,41 +376,101 @@ if (contactForm) {
       isValid = false;
     } else {
       clearError(email);
+      markFieldValid(email);
     }
 
     // Validate subject
     if (!subject.value.trim()) {
       showError(subject, "Subject is required");
       isValid = false;
+    } else if (subject.value.trim().length < 3) {
+      showError(subject, "Subject must be at least 3 characters");
+      isValid = false;
     } else {
       clearError(subject);
+      markFieldValid(subject);
     }
 
     // Validate message
     if (!message.value.trim()) {
       showError(message, "Message is required");
       isValid = false;
+    } else if (message.value.trim().length < 10) {
+      showError(message, "Message must be at least 10 characters");
+      isValid = false;
     } else {
       clearError(message);
+      markFieldValid(message);
     }
 
     if (!isValid) {
       e.preventDefault();
+    } else {
+      // Show loading state
+      const submitBtn = contactForm.querySelector(".btn-submit");
+      submitBtn.classList.add("loading");
+      submitBtn.disabled = true;
     }
   });
 }
 
 //===========================================
-// 9.2 Error messages show karne aur clear karne ke functions
+// 9.2 Enhanced Field Validation Functions
 //===========================================
+function validateField(input) {
+  const value = input.value.trim();
+  const fieldName = input.name;
+
+  let isValid = false;
+
+  switch (fieldName) {
+    case "name":
+      isValid = value.length >= 2;
+      if (!isValid) showError(input, "Name must be at least 2 characters");
+      break;
+    case "email":
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      isValid = emailRegex.test(value);
+      if (!isValid) showError(input, "Please enter a valid email");
+      break;
+    case "subject":
+      isValid = value.length >= 3;
+      if (!isValid) showError(input, "Subject must be at least 3 characters");
+      break;
+    case "message":
+      isValid = value.length >= 10;
+      if (!isValid) showError(input, "Message must be at least 10 characters");
+      break;
+  }
+
+  if (isValid) {
+    clearError(input);
+    markFieldValid(input);
+  } else {
+    input.classList.add("is-invalid");
+  }
+
+  return isValid;
+}
+
+function markFieldValid(input) {
+  input.classList.remove("is-invalid");
+  input.classList.add("is-valid");
+  const errorMsg = input.parentElement.querySelector(".error-message");
+  if (errorMsg) {
+    errorMsg.remove();
+  }
+}
+
 function showError(input, message) {
   const formGroup = input.parentElement;
   input.classList.add("is-invalid");
+  input.classList.remove("is-valid");
 
   let errorMsg = formGroup.querySelector(".error-message");
   if (!errorMsg) {
     errorMsg = document.createElement("small");
-    errorMsg.classList.add("error-message", "d-block", "mt-2", "text-danger");
+    errorMsg.classList.add("error-message", "d-block", "mt-2");
     formGroup.appendChild(errorMsg);
   }
   errorMsg.textContent = message;
@@ -385,7 +487,7 @@ function clearError(input) {
 }
 
 //===========================================
-// 9.3 ENHANCED FORM SUCCESS MESSAGE
+// 9.3 ENHANCED FORM SUCCESS MESSAGE WITH ANIMATIONS
 //===========================================
 const contactFormElement = document.querySelector(".contact-form");
 
@@ -397,13 +499,115 @@ if (contactFormElement) {
     // Add success state
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Sending...';
+    submitBtn.classList.add("loading");
 
-    // Reset after 3 seconds (adjust based on your backend)
+    // Listen for response (Web3Forms handles this)
+    // Show success message after submission
     setTimeout(() => {
+      // Reset after 3 seconds (adjust based on your backend)
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
+      submitBtn.classList.remove("loading");
+
+      // Show success notification
+      showSuccessNotification("Message sent successfully! I'll get back to you soon.");
     }, 3000);
   });
+
+  // If the browser restores the page from cache after going back, clear the form fields
+  window.addEventListener("pageshow", function (event) {
+    if (event.persisted) {
+      contactFormElement.reset();
+      const charCount = document.getElementById("charCount");
+      if (charCount) charCount.textContent = "0";
+    }
+  });
+}
+
+//===========================================
+// 9.4 SUCCESS NOTIFICATION SYSTEM
+//===========================================
+function showSuccessNotification(message) {
+  const notification = document.createElement("div");
+  notification.className = "success-notification";
+  notification.innerHTML = `
+    <div class="notification-content">
+      <i class="bi bi-check-circle-fill"></i>
+      <span>${message}</span>
+    </div>
+  `;
+  
+  notification.style.cssText = `
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    z-index: 10000;
+    animation: slideInRight 0.4s ease-out;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+  `;
+
+  document.body.appendChild(notification);
+
+  // Remove after 4 seconds
+  setTimeout(() => {
+    notification.style.animation = "slideOutRight 0.4s ease-out";
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 400);
+  }, 4000);
+}
+
+// Error notification function
+function showErrorNotification(message) {
+  const notification = document.createElement("div");
+  notification.className = "error-notification";
+  notification.innerHTML = `
+    <div class="notification-content">
+      <i class="bi bi-exclamation-circle-fill"></i>
+      <span>${message}</span>
+    </div>
+  `;
+  
+  notification.style.cssText = `
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    z-index: 10000;
+    animation: slideInRight 0.4s ease-out;
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+  `;
+
+  document.body.appendChild(notification);
+
+  // Remove after 4 seconds
+  setTimeout(() => {
+    notification.style.animation = "slideOutRight 0.4s ease-out";
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 400);
+  }, 4000);
 }
 
 // ============================================================

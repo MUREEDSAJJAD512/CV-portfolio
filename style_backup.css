@@ -439,7 +439,7 @@ h2::after {
 
 /* Jab page scroll ho to header ka rang thora dark ho jaye */
 .header.scrolled {
-  background: var();
+  background: var(--bg-header);
   padding: 10px 0;
   /* backdrop-filter: blur(20px); */
 }
