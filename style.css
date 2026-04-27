@@ -3,21 +3,13 @@
    ========================================================== */
 :root {
   --bg-body: #0f172a;
-  /* Main background color for dark theme */
   --bg-header: rgba(15, 23, 42, 0.8);
-  /* Header background with transparency */
   --text-main: #94a3b8;
-  /* Primary text color */
   --text-bright: #ffffff;
-  /* Bright/white text color */
   --primary-color: #38bdf8;
-  /* Main accent color (cyan blue) */
   --card-bg: rgba(15, 30, 60, 0.4);
-  /* Card background with transparency */
   --header-text: rgba(244, 160, 25, 0.95);
-  /* Header text color */
   --glow-color: rgba(56, 189, 248, 0.15);
-  /* Glow effect color */
 }
 
 /* Dark Mode Theme */
@@ -112,11 +104,8 @@ body.light-mode .btn-outline-primary:hover {
 /* Professional GitHub Button - Modern, sleek design with hover effects */
 .btn-github-professional {
   display: inline-flex;
-  /* Flexbox for perfect alignment */
   align-items: center;
-  /* Center items vertically */
   gap: 10px;
-  /* Space between icon and text */
   padding: 12px 24px;
   /* Comfortable padding */
   background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
@@ -309,6 +298,14 @@ body.light-mode .btn-github-professional:hover {
     /* Smaller icon on mobile */
   }
 }
+
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
 
 /* ==========================================================
    2. GLOBAL STYLES & RESET - Basic styling and CSS reset
@@ -745,6 +742,10 @@ nav li {
   width: 400px;
   height: 400px;
   animation: fadeIn 0.8s ease-out;
+
+  /* max-width: 100%;
+  width: 300px;
+  height: auto; */
 }
 
 .profile-glow {
@@ -2554,7 +2555,7 @@ img.loaded {
   .profile-image {
     max-width: 100% !important;
     height: auto !important;
-    width: 250px !important;
+    /* width: 250px !important; */
     margin: 0 auto;
   }
 
