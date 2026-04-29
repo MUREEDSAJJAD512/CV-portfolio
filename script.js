@@ -733,10 +733,10 @@ window.addEventListener("scroll", () => {
 //===========================================
 // whatsapp connect 
 //===========================================
-const message = encodeURIComponent("Hi Mureed Sajjad, Just connected with you through your link. How are you?");
-const link = "https://wa.me/923437543272?text=" + message;
+// const message = encodeURIComponent("Hi Mureed Sajjad, Just connected with you through your link. How are you?");
+// const link = "https://wa.me/923437543272?text=" + message;
 
-document.querySelector(".social-link").href = link;
+// document.querySelector(".social-link").href = link;
 
 
 //===========================================
