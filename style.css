@@ -300,7 +300,8 @@ body.light-mode .btn-github-professional:hover {
 }
 
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   width: 100%;
   position: relative;
@@ -390,24 +391,17 @@ h2::after {
 
 /* Logo Styling - Brand name/logo in header */
 .logo a {
-  font-size: 28px;
-  /* Large font size for logo */
+  font-size: clamp(18px, 5vw, 40px);
   font-weight: 800;
-  /* Extra bold font weight */
   color: var(--text-bright);
-  /* Bright text color */
   text-decoration: none;
-  /* Removes underline from link */
   letter-spacing: 1px;
-  /* Slight letter spacing */
   text-transform: uppercase;
-  /* Converts text to uppercase */
 }
 
 /* Logo span color - Special color for part of logo */
 .logo span {
   color: #00f2ff;
-  /* Cyan color for logo accent */
 }
 
 /* Main Header Container - Fixed header at top of page */
@@ -469,7 +463,7 @@ h2::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 30px;
 }
 
 .navbar-menu ul {
@@ -918,6 +912,7 @@ nav li {
 .skill-bar {
   transition: width 1.5s ease-in-out;
 }
+
 /* ==========================================================
    8. CERTIFICATIONS SECTION
    ========================================================== */
@@ -2269,11 +2264,8 @@ img.loaded {
 @media (max-width: 991px) {
   .header {
     width: 100% !important;
-    /* Full width on mobile */
     left: 0 !important;
-    /* Align to left edge */
     padding: 10px 10px 0;
-    /* Reduced padding for mobile */
   }
 
   #menuBtn {
@@ -2298,12 +2290,10 @@ img.loaded {
   }
 
   #menuBtn:hover {
-    background: rgba(56, 189, 248, 0.2);
-    /* Slightly more prominent on hover */
+    background: rgba(3, 173, 246, 0.703);
     border-color: var(--primary-color);
-    /* Solid border on hover */
     transform: scale(1.05);
-    /* Subtle scale effect */
+    border: 2px solid var(--text-bright);
   }
 
   .logo a {
@@ -2329,43 +2319,31 @@ img.loaded {
 
   .navbar-menu {
     position: fixed;
-    /* Fixed position for slide-down menu */
     top: -110vh;
-    /* Hidden above screen initially */
-    left: 10px;
-    /* Small left margin for professional look */
-    right: 10px;
-    /* Small right margin for professional look */
+    left: 20px;
+    right: 20px;
     width: auto;
-    /* Auto width for full coverage minus margins */
     height: auto;
-    /* Auto height */
-    background: rgba(15, 23, 42, 0.95);
-    /* Semi-transparent background */
-    backdrop-filter: blur(20px);
-    /* Professional blur effect */
+    background: linear-gradient(135deg,
+        rgba(15, 23, 42, 0.95),
+        rgba(2, 132, 199, 0.35),
+        rgba(15, 23, 42, 0.95));
+    /* backdrop-filter: blur(28px); */
     padding: 30px 20px;
-    /* Comfortable padding */
-    border-radius: 15px;
-    /* Rounded corners */
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    /* Subtle border */
+    border-radius: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
     transition: top 0.5s ease,
       filter 0.3s ease,
       opacity 0.3s ease;
     z-index: 999;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    /* Professional shadow */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45)
+    inset 0 0 15px rgba(0, 255, 255, 0.08);
   }
 
   .navbar-menu.active {
-    top: 60px;
+    top: 70px;
   }
 
-  .navbar-menu.blur {
-    filter: blur(6px);
-    opacity: 0.5;
-  }
 
   .navbar-menu:hover {
     filter: blur(0);
@@ -2373,51 +2351,38 @@ img.loaded {
   }
 
   .navbar-menu ul {
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    /* Comfortable spacing */
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
   .navbar-menu .nav-link {
-    color: var(--text-bright);
-    /* Bright text color */
+    color:var(--text-bright);
     text-decoration: none;
     font-size: 16px;
-    /* Professional font size */
     font-weight: 500;
-    /* Medium weight */
-    padding: 12px 24px;
-    /* Comfortable padding */
-    border-radius: 25px;
-    /* Rounded corners */
+    padding: 12px 26px;
+    border-radius: 24px;
     transition: all 0.3s ease;
-    /* Smooth transitions */
-    background: rgba(255, 255, 255, 0.05);
-    /* Subtle background */
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    /* Subtle border */
+    background: var(--primary-color);
+    border: 2px solid var(--text-bright);
     min-width: 150px;
-    /* Consistent width */
     text-align: center;
-    /* Center text */
   }
 
   .navbar-menu .nav-link:hover,
   .navbar-menu .nav-link.active {
-    color: #000;
-    background: linear-gradient(135deg, #00f2ff, #38bdf8);
-    /* Professional gradient */
-    border-color: #00f2ff;
-    /* Matching border */
+    color: #001018;
+    background: linear-gradient(135deg, #a6edf5, #4232ef);
+    border-color: rgb(6, 20, 6);
     transform: translateY(-2px);
-    /* Subtle lift effect */
-    box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3);
-    /* Professional shadow */
+    box-shadow: 0 10px 25px rgba(180, 17%, 95%, 0.448);
   }
+
 
   .social-icons a,
   #darkToggle {
@@ -2454,7 +2419,8 @@ img.loaded {
 @media (max-width: 1199px) {
   #header {
     height: 70px;
-    padding: 0 30px;
+    /* padding: 10px 10px; */
+    padding: auto;
   }
 
   .header-container {

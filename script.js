@@ -65,8 +65,25 @@ document.addEventListener("click", function (e) {
 });
 
 // ============================================================
-// 2. HERO SECTION FUNCTIONS
+// nav link per click karne par menu close karna (mobile view ke liye)
 // ============================================================
+const navLinks = navbar.querySelectorAll("a");
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    if (window.innerWidth <= 991) {
+      navbar.classList.remove("active");
+
+      const icon = menuBtn.querySelector("i");
+      if (icon) {
+        icon.classList.remove("bi-x");
+        icon.classList.add("bi-list");
+      }
+      
+      menuBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+});
+
 
 //===========================================
 // 2.1 Dark/Light Mode Toggle
