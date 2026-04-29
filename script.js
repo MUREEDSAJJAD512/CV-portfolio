@@ -300,10 +300,6 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-// ============================================================
-// 9. CONTACT SECTION FUNCTIONS
-// ============================================================
-
 //===========================================
 // 9.1 ADVANCED FORM VALIDATION & SUBMISSION
 //===========================================
@@ -614,13 +610,6 @@ function showErrorNotification(message) {
 // 10. FOOTER SECTION FUNCTIONS
 // ============================================================
 
-// ============================================================
-// GLOBAL UTILITY FUNCTIONS
-// ============================================================
-
-//===========================================
-// GLOBAL INITIALIZATION & SETUP
-//===========================================
 
 // Load saved theme and refresh animations on page load
 window.addEventListener("load", () => {
@@ -714,6 +703,35 @@ if (backToTopBtn) {
     });
   });
 }
+//=========================================
+// skill bar animation
+//========================================= 
+
+document.addEventListener("DOMContentLoaded", () => {
+  const skillBars = document.querySelectorAll(".skill-bar");
+
+  skillBars.forEach((bar) => {
+    const width = bar.getAttribute("data-width");
+    bar.style.width = width + "%";
+  });
+});
+
+
+window.addEventListener("scroll", () => {
+  const section = document.querySelector("#skills");
+  const position = section.getBoundingClientRect().top;
+  const screenHeight = window.innerHeight;
+
+  if (position < screenHeight) {
+    document.querySelectorAll(".skill-bar").forEach((bar) => {
+      const width = bar.getAttribute("data-width");
+      bar.style.width = width + "%";
+    });
+  }
+});
+
+
+
 
 //===========================================
 // RESPONSIVE HEADER BEHAVIOR
@@ -780,38 +798,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-//===========================================
-// REAL-TIME CLOCK / LOCATION DISPLAY
-//===========================================
-function updateTimeLocation() {
-  // Show location if available
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      console.log("User location available");
-      // You can use position.coords.latitude/longitude
-    });
-  }
-
-  // Update time dynamically
-  const updateTime = () => {
-    const now = new Date();
-    const timeElements = document.querySelectorAll("[data-time]");
-
-    timeElements.forEach((el) => {
-      el.textContent = now.toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      });
-    });
-  };
-
-  updateTime();
-  setInterval(updateTime, 1000);
-}
-
-// Call if needed
-updateTimeLocation();
 
 //===========================================
 // LAZY LOADING IMAGES
