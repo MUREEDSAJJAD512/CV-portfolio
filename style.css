@@ -18,7 +18,7 @@ body.dark-mode {
   --bg-header: #0a0e27;
   --text-main: #cad2dd;
   --text-bright: #ffffff;
-  --primary-color: #012ef6;
+  --primary-color: #1c3fdb;
   --card-bg: rgba(20, 30, 60, 0.6);
   --glow-color: rgba(96, 165, 250, 0.2);
 }
@@ -27,9 +27,9 @@ body.dark-mode {
 body.light-mode {
   --bg-body: #f8f9fa;
   --bg-header: rgba(255, 255, 255, 0.8);
-  --text-main: #333333;
+  --text-main: #272626;
   --text-bright: #000000;
-  --primary-color: #021ff9;
+  --primary-color: #1f34d3;
   --card-bg: rgba(220, 230, 245, 0.4);
   --glow-color: rgba(0, 102, 204, 0.261);
 }
@@ -466,6 +466,10 @@ h2::after {
   padding: 0 30px;
 }
 
+
+.no-scroll {
+  overflow: hidden;
+}
 .navbar-menu ul {
   display: flex;
   list-style: none;
@@ -2328,7 +2332,8 @@ img.loaded {
         rgba(15, 23, 42, 0.95),
         rgba(2, 132, 199, 0.35),
         rgba(15, 23, 42, 0.95));
-    /* backdrop-filter: blur(28px); */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
     padding: 30px 20px;
     border-radius: 18px;
     border: 2px solid rgba(255, 255, 255, 0.25);
@@ -2342,13 +2347,9 @@ img.loaded {
 
   .navbar-menu.active {
     top: 70px;
-  }
-
-
-  .navbar-menu:hover {
-    filter: blur(0);
     opacity: 1;
   }
+
 
   .navbar-menu ul {
     display: flex;
@@ -2368,8 +2369,8 @@ img.loaded {
     padding: 12px 26px;
     border-radius: 24px;
     transition: all 0.3s ease;
-    background: var(--primary-color);
-    border: 2px solid var(--text-bright);
+    background: var(--bg-body);
+    border: 2px solid var(--primary-color);
     min-width: 150px;
     text-align: center;
   }

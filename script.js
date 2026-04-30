@@ -44,6 +44,8 @@ if (menuBtn && navbar) {
 
     // Accessibility
     menuBtn.setAttribute("aria-expanded", isActive);
+
+    document.body.classList.toggle("no-scroll", isActive);
   });
 }
 
@@ -60,6 +62,7 @@ document.addEventListener("click", function (e) {
         icon.classList.remove("bi-x");
         icon.classList.add("bi-list");
       }
+      menuBtn.setAttribute("aria-expanded", "false");
     }
   }
 });
@@ -68,7 +71,7 @@ document.addEventListener("click", function (e) {
 // nav link per click karne par menu close karna (mobile view ke liye)
 // ============================================================
 const navLinks = navbar.querySelectorAll("a");
-navLinks.forEach(link => {
+navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     if (window.innerWidth <= 991) {
       navbar.classList.remove("active");
@@ -78,12 +81,10 @@ navLinks.forEach(link => {
         icon.classList.remove("bi-x");
         icon.classList.add("bi-list");
       }
-      
       menuBtn.setAttribute("aria-expanded", "false");
     }
   });
 });
-
 
 //===========================================
 // 2.1 Dark/Light Mode Toggle
@@ -108,28 +109,21 @@ darkToggle.addEventListener("click", () => {
 // 2.2 DOWNLOAD RESUME FUNCTION
 //===========================================
 function downloadResume(event) {
-  // Prevent default link behavior
   event.preventDefault();
 
-  // Create a temporary link element
   const link = document.createElement("a");
   link.href = "CV WEB.MS.pdf";
   link.download = "Mureed_Sajjad_CV.pdf";
 
-  // Add to DOM and trigger download
   document.body.appendChild(link);
   link.click();
 
-  // Remove from DOM
   document.body.removeChild(link);
 
-  // Optional: Show success message
   showDownloadMessage();
 }
 
-// Download success message function
 function showDownloadMessage() {
-  // Create success message element
   const message = document.createElement("div");
   message.textContent = "✅ CV Downloaded Successfully!";
   message.style.cssText = `
@@ -326,13 +320,13 @@ const contactFormId = document.getElementById("contactForm");
 if (contactForm) {
   // Real-time validation on input
   const inputs = contactForm.querySelectorAll(".form-control, textarea");
-  
-  inputs.forEach(input => {
-    input.addEventListener("blur", function() {
+
+  inputs.forEach((input) => {
+    input.addEventListener("blur", function () {
       validateField(this);
     });
 
-    input.addEventListener("input", function() {
+    input.addEventListener("input", function () {
       if (this.classList.contains("is-invalid")) {
         validateField(this);
       }
@@ -342,7 +336,7 @@ if (contactForm) {
   // Character count for message
   const messageField = document.getElementById("message");
   if (messageField) {
-    messageField.addEventListener("input", function() {
+    messageField.addEventListener("input", function () {
       const charCount = document.getElementById("charCount");
       const length = this.value.length;
       charCount.textContent = length;
@@ -355,7 +349,9 @@ if (contactForm) {
         this.value = this.value.substring(0, 500);
         charCount.textContent = "500";
       } else {
-        document.querySelector(".char-count").classList.remove("warning", "limit");
+        document
+          .querySelector(".char-count")
+          .classList.remove("warning", "limit");
       }
     });
   }
@@ -523,7 +519,9 @@ if (contactFormElement) {
       submitBtn.classList.remove("loading");
 
       // Show success notification
-      showSuccessNotification("Message sent successfully! I'll get back to you soon.");
+      showSuccessNotification(
+        "Message sent successfully! I'll get back to you soon.",
+      );
     }, 3000);
   });
 
@@ -549,7 +547,7 @@ function showSuccessNotification(message) {
       <span>${message}</span>
     </div>
   `;
-  
+
   notification.style.cssText = `
     position: fixed;
     top: 100px;
@@ -591,7 +589,7 @@ function showErrorNotification(message) {
       <span>${message}</span>
     </div>
   `;
-  
+
   notification.style.cssText = `
     position: fixed;
     top: 100px;
@@ -626,7 +624,6 @@ function showErrorNotification(message) {
 // ============================================================
 // 10. FOOTER SECTION FUNCTIONS
 // ============================================================
-
 
 // Load saved theme and refresh animations on page load
 window.addEventListener("load", () => {
@@ -722,7 +719,7 @@ if (backToTopBtn) {
 }
 //=========================================
 // skill bar animation
-//========================================= 
+//=========================================
 
 document.addEventListener("DOMContentLoaded", () => {
   const skillBars = document.querySelectorAll(".skill-bar");
@@ -732,7 +729,6 @@ document.addEventListener("DOMContentLoaded", () => {
     bar.style.width = width + "%";
   });
 });
-
 
 window.addEventListener("scroll", () => {
   const section = document.querySelector("#skills");
@@ -748,13 +744,12 @@ window.addEventListener("scroll", () => {
 });
 
 //===========================================
-// whatsapp connect 
+// whatsapp connect
 //===========================================
 // const message = encodeURIComponent("Hi Mureed Sajjad, Just connected with you through your link. How are you?");
 // const link = "https://wa.me/923437543272?text=" + message;
 
 // document.querySelector(".social-link").href = link;
-
 
 //===========================================
 // RESPONSIVE HEADER BEHAVIOR
@@ -820,7 +815,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }
   });
 });
-
 
 //===========================================
 // LAZY LOADING IMAGES
